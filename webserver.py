@@ -12,12 +12,12 @@ def index():
     return render_template('index.html', content=content)
 
 
-@app.route('/save', methods=['POST'])
-def save():
-    updated_content = request.form['content']
-    with open('brief.py', 'w', encoding='UTF-8', newline='') as file:
-        file.write(updated_content)
-    return 'Файл сохранен успешно. <a href="/">Вернуться на главную</a>'
+# @app.route('/save', methods=['POST'])
+# def save():
+#     updated_content = request.form['content']
+#     with open('brief.py', 'w', encoding='UTF-8', newline='') as file:
+#         file.write(updated_content)
+#     return 'Файл сохранен успешно. <a href="/">Вернуться на главную</a>'
 
 
 @app.route('/settings')
@@ -34,6 +34,6 @@ def show_settings():
 #     return redirect('/settings')
 
 
-# if __name__ == "__main__":
-#     app.run(host='0.0.0.0', port=3000)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=3000)
 

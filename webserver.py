@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request
 from config import *
 from brief import *
+import logging
+
 app = Flask(__name__, template_folder=r'templates/')
+logging.basicConfig(level=logging.INFO, filename='logs/flask.log', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
 @app.route('/')
@@ -24,6 +27,8 @@ def show_settings():
     # with open('config.py', 'r', encoding='UTF-8', newline='') as file:
     #     content = file.read()
     return render_template('settings.html', token=results_cmds, content=brief)
+
+
 #
 #
 # @app.route('/update_commands', methods=['POST'])

@@ -27,7 +27,7 @@ def save():
 def show_settings():
     # with open('config.py', 'r', encoding='UTF-8', newline='') as file:
     #     content = file.read()
-    return render_template('settings.html', token=results_cmds, content=brief)
+    return render_template('settings.html', content=brief)
 
 
 #

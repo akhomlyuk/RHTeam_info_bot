@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RHTeam info bot</title>
+    <title>RHTeam brief</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   </head>
   <body>
@@ -18,22 +18,13 @@
 </nav>
 
     <div class="container">
-        <h3>Редактор:</h3>
-    <form action="/save" method="post">
-        <div class="form-group row">
-        <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="10">{{ content }}</textarea>
-        </div>
-        <div class="form-row align-items-center">
             <div class="col-sm-3 my-1">
-        <button type="submit" value="Сохранить" class="btn btn-outline-primary">Сохранить</button>
-        <a href="/settings" class="btn btn-outline-secondary" role="button">Брифинг</a>
-            </div>
+        <h2>Брифинг</h2>
 
-        </div>
-    </form>
-
-
-
+      </div>
+    <div>
+      <pre>{{ content }}</pre>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </body>

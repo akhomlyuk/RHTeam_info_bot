@@ -1,0 +1,91 @@
+2023-07-24 19:47:59,474 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://79.133.183.84:3000
+2023-07-24 19:47:59,474 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2023-07-24 19:48:08,162 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 19:48:08] "GET / HTTP/1.1" 200 -
+2023-07-24 19:48:10,219 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 19:48:10] "GET /settings HTTP/1.1" 200 -
+2023-07-24 19:48:11,937 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 19:48:11] "GET / HTTP/1.1" 200 -
+2023-07-24 19:49:09,366 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 19:49:09] "GET / HTTP/1.1" 200 -
+2023-07-24 19:49:14,699 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 19:49:14] "GET /settings HTTP/1.1" 200 -
+2023-07-24 19:59:15,091 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://79.133.183.84:3000
+2023-07-24 19:59:15,091 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2023-07-24 19:59:20,659 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 19:59:20] "GET / HTTP/1.1" 200 -
+2023-07-24 19:59:20,991 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 19:59:20] "GET / HTTP/1.1" 200 -
+2023-07-24 19:59:26,157 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 19:59:26] "GET /settings HTTP/1.1" 200 -
+2023-07-24 20:00:33,368 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:00:33] "GET /settings HTTP/1.1" 200 -
+2023-07-24 20:00:47,414 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:00:47] "GET / HTTP/1.1" 200 -
+2023-07-24 20:00:49,476 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:00:49] "GET /settings HTTP/1.1" 200 -
+2023-07-24 20:01:39,262 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:01:39] "GET / HTTP/1.1" 200 -
+2023-07-24 20:01:39,574 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:01:39] "GET / HTTP/1.1" 200 -
+2023-07-24 20:01:43,522 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:01:43] "GET /settings HTTP/1.1" 200 -
+2023-07-24 20:02:20,389 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:02:20] "GET /settings HTTP/1.1" 200 -
+2023-07-24 20:02:22,567 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:02:22] "GET / HTTP/1.1" 200 -
+2023-07-24 20:02:22,922 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:02:22] "GET / HTTP/1.1" 200 -
+2023-07-24 20:03:23,283 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:03:23] "GET / HTTP/1.1" 200 -
+2023-07-24 20:05:09,304 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://79.133.183.84:3000
+2023-07-24 20:05:09,304 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2023-07-24 20:05:17,853 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:05:17] "GET / HTTP/1.1" 200 -
+2023-07-24 20:05:20,705 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:05:20] "GET /settings HTTP/1.1" 200 -
+2023-07-24 20:05:25,777 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:05:25] "GET / HTTP/1.1" 200 -
+2023-07-24 20:06:17,978 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:06:17] "GET /settings HTTP/1.1" 200 -
+2023-07-24 20:06:23,757 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:06:23] "GET / HTTP/1.1" 200 -
+2023-07-24 20:06:24,837 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:06:24] "GET / HTTP/1.1" 200 -
+2023-07-24 20:06:25,775 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:06:25] "GET / HTTP/1.1" 200 -
+2023-07-24 20:16:43,414 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:16:43] "GET / HTTP/1.1" 200 -
+2023-07-24 20:16:45,178 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:16:45] "GET /settings HTTP/1.1" 200 -
+2023-07-24 20:16:49,832 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:16:49] "GET / HTTP/1.1" 200 -
+2023-07-24 20:17:40,021 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:17:40] "POST /save HTTP/1.1" 200 -
+2023-07-24 20:17:56,086 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:17:56] "GET / HTTP/1.1" 200 -
+2023-07-24 20:35:40,878 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://79.133.183.84:3000
+2023-07-24 20:35:40,879 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2023-07-24 20:35:44,947 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:35:44] "GET / HTTP/1.1" 200 -
+2023-07-24 20:37:47,548 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:37:47] "GET /settings HTTP/1.1" 200 -
+2023-07-24 20:37:51,079 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 20:37:51] "GET / HTTP/1.1" 200 -
+2023-07-24 21:30:50,827 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://79.133.183.84:3000
+2023-07-24 21:30:50,827 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2023-07-24 21:31:14,522 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 21:31:14] "GET / HTTP/1.1" 200 -
+2023-07-24 21:31:16,469 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 21:31:16] "GET /settings HTTP/1.1" 200 -
+2023-07-24 21:31:18,605 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 21:31:18] "GET / HTTP/1.1" 200 -
+2023-07-24 21:35:40,634 - werkzeug - INFO - 188.162.64.178 - - [24/Jul/2023 21:35:40] "GET /settings HTTP/1.1" 200 -
+2023-07-24 21:51:13,031 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://79.133.183.84:3000
+2023-07-24 21:51:13,031 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2023-07-24 21:58:51,121 - werkzeug - INFO - 94.25.229.5 - - [24/Jul/2023 21:58:51] "GET /settings HTTP/1.1" 200 -
+2023-07-24 21:58:52,477 - werkzeug - INFO - 94.25.229.5 - - [24/Jul/2023 21:58:52] "GET / HTTP/1.1" 200 -
+2023-07-24 22:03:50,828 - werkzeug - INFO - 188.162.64.16 - - [24/Jul/2023 22:03:50] "GET / HTTP/1.1" 200 -
+2023-07-24 22:03:52,702 - werkzeug - INFO - 188.162.64.16 - - [24/Jul/2023 22:03:52] "GET /settings HTTP/1.1" 200 -
+2023-07-24 22:03:54,271 - werkzeug - INFO - 188.162.64.16 - - [24/Jul/2023 22:03:54] "GET / HTTP/1.1" 200 -
+2023-07-24 22:14:31,803 - werkzeug - INFO - 188.162.64.16 - - [24/Jul/2023 22:14:31] "GET / HTTP/1.1" 200 -
+2023-07-24 22:22:48,978 - werkzeug - INFO - 188.162.64.16 - - [24/Jul/2023 22:22:48] "GET / HTTP/1.1" 200 -
+2023-07-24 22:22:54,542 - werkzeug - INFO - 188.162.64.16 - - [24/Jul/2023 22:22:54] "GET /settings HTTP/1.1" 200 -
+2023-07-24 22:22:57,117 - werkzeug - INFO - 188.162.64.16 - - [24/Jul/2023 22:22:57] "GET / HTTP/1.1" 200 -
+2023-07-24 22:23:58,595 - werkzeug - INFO - 188.162.64.16 - - [24/Jul/2023 22:23:58] "GET / HTTP/1.1" 200 -
+2023-07-24 22:29:26,274 - werkzeug - INFO - 188.162.64.16 - - [24/Jul/2023 22:29:26] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2023-07-24 22:29:28,040 - werkzeug - INFO - 188.162.64.16 - - [24/Jul/2023 22:29:28] "GET / HTTP/1.1" 200 -
+2023-07-24 22:29:35,394 - werkzeug - INFO - 188.162.64.16 - - [24/Jul/2023 22:29:35] "GET / HTTP/1.1" 200 -
+2023-07-24 22:46:55,432 - werkzeug - INFO - 188.162.64.16 - - [24/Jul/2023 22:46:55] "GET / HTTP/1.1" 200 -
+2023-07-24 22:46:57,559 - werkzeug - INFO - 188.162.64.16 - - [24/Jul/2023 22:46:57] "GET /settings HTTP/1.1" 200 -
+2023-07-24 22:47:00,391 - werkzeug - INFO - 188.162.64.16 - - [24/Jul/2023 22:47:00] "GET / HTTP/1.1" 200 -
+2023-07-24 23:08:49,485 - werkzeug - INFO - 94.25.229.205 - - [24/Jul/2023 23:08:49] "GET /settings HTTP/1.1" 200 -
+2023-07-24 23:08:53,130 - werkzeug - INFO - 94.25.229.205 - - [24/Jul/2023 23:08:53] "GET / HTTP/1.1" 200 -
+2023-07-24 23:12:59,536 - werkzeug - INFO - 178.204.115.167 - - [24/Jul/2023 23:12:59] "GET / HTTP/1.1" 200 -
+2023-07-24 23:12:59,791 - werkzeug - INFO - 178.204.115.167 - - [24/Jul/2023 23:12:59] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2023-07-24 23:16:09,747 - werkzeug - INFO - 178.204.115.167 - - [24/Jul/2023 23:16:09] "POST /save HTTP/1.1" 200 -
+2023-07-24 23:16:11,802 - werkzeug - INFO - 178.204.115.167 - - [24/Jul/2023 23:16:11] "GET / HTTP/1.1" 200 -
+2023-07-24 23:16:13,270 - werkzeug - INFO - 178.204.115.167 - - [24/Jul/2023 23:16:13] "GET /settings HTTP/1.1" 200 -
+2023-07-24 23:16:15,088 - werkzeug - INFO - 178.204.115.167 - - [24/Jul/2023 23:16:15] "GET / HTTP/1.1" 200 -

@@ -1,8 +1,5 @@
 import asyncio
-import threading
 import logging
-from webserver import app
-from werkzeug.serving import run_simple
 from contextlib import suppress
 from aiogram import Bot, Dispatcher, types
 from aiogram.dispatcher.filters import Text, BoundFilter

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from config import *
 from brief import *
+from icecream import ic
 import logging
 
 app = Flask(__name__, template_folder=r'templates/')
@@ -39,4 +40,4 @@ def show_settings():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=3000)
+    ic(app.run(host='0.0.0.0', port=3000))

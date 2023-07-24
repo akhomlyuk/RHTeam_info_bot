@@ -16,7 +16,7 @@ def index():
 
 
 @app.route('/nextevent', methods=['POST'])
-def save():
+def save_nextevent():
     updated_content = request.form['next_event']
     with open('notes/next', 'w', encoding='UTF-8', newline='') as file:
         file.write(updated_content)
@@ -24,7 +24,7 @@ def save():
 
 
 @app.route('/todolist', methods=['POST'])
-def save():
+def save_todolist():
     updated_content = request.form['todo_list']
     with open('notes/todo', 'w', encoding='UTF-8', newline='') as file:
         file.write(updated_content)

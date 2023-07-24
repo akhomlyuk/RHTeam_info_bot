@@ -1,10 +1,8 @@
 import asyncio
 import threading
 import logging
-import os
 from webserver import app
 from werkzeug.serving import run_simple
-from icecream import ic
 from contextlib import suppress
 from aiogram import Bot, Dispatcher, types
 from aiogram.dispatcher.filters import Text, BoundFilter
@@ -19,11 +17,10 @@ os.makedirs('logs', exist_ok=True)
 os.makedirs('notes', exist_ok=True)
 logging.basicConfig(level=logging.INFO, filename='logs/bot.log', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-
 bot = Bot(token=bot_token)
 dp = Dispatcher(bot)
 
-rht_info = rht_info()
+rht_info = ic(rht_info())
 rht_best = rht_best_res()
 top_ru = top_teams_ru()
 
@@ -283,4 +280,4 @@ if __name__ == "__main__":
     bot_thread = threading.Thread(target=run_bot)
     bot_thread.start()
 
-    run_simple('0.0.0.0', 3000, app)
+    run_simple('0.0.0.0', 3000, app, use_reloader=True)

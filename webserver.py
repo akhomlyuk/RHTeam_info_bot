@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request
 from config import *
 from brief import *
 app = Flask(__name__, template_folder=r'templates/')
@@ -33,6 +33,5 @@ def show_settings():
 #     return redirect('/settings')
 
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=3000)
-
+# if __name__ == "__main__":
+#     app.run(host='0.0.0.0', port=3000)

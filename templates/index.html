@@ -14,24 +14,35 @@
       <img src="https://ctftime.org/media/cache/44/39/4439ee82adb00a673e1f53d0218a0e95.png" alt="" width="50" height="50" class="d-inline-block align-text-top">
     </a>
        <a href="/" class="me-auto btn btn-outline-primary" role="button">Главная</a>
+      <a href="/settings" class="me-auto btn btn-outline-primary" role="button">Брифинг</a>
   </div>
 </nav>
 
     <div class="container">
-        <h3>Редактор:</h3>
+        <h3>Следующее событие:</h3>
     <form action="/save" method="post">
         <div class="form-group row">
-        <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="10">{{ content }}</textarea>
+        <textarea name="next_event" class="form-control" id="next_event_textarea" rows="10">{{ next_event }}</textarea>
         </div>
         <div class="form-row align-items-center">
             <div class="col-sm-3 my-1">
         <button type="submit" value="Сохранить" class="btn btn-outline-primary">Сохранить</button>
-        <a href="/settings" class="btn btn-outline-secondary" role="button">Брифинг</a>
             </div>
 
         </div>
     </form>
+        <h3>Список дел:</h3>
+     <form action="/save" method="post">
+        <div class="form-group row">
+        <textarea name="todo_list" class="form-control" id="todo_textarea" rows="10">{{ todo_list }}</textarea>
+        </div>
+        <div class="form-row align-items-center">
+            <div class="col-sm-3 my-1">
+        <button type="submit" value="Сохранить" class="btn btn-outline-primary">Сохранить</button>
+            </div>
 
+        </div>
+    </form>
 
 
     </div>

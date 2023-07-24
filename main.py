@@ -103,7 +103,9 @@ async def rht_get_next_event(message: types.Message):
 
 @dp.message_handler(Text(equals=todo_cmds, ignore_case=True))
 async def rht_todo(message: types.Message):
-    await message.reply(todo, parse_mode='HTML')
+    with open('notes/todo', encoding='UTF-8', newline='') as content:
+        content = content.read()
+    await message.reply(f'''{content}''', parse_mode='HTML')
 
 
 @dp.message_handler(Text(equals=git_cmds, ignore_case=True))

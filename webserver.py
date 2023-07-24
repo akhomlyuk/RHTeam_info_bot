@@ -15,10 +15,18 @@ def index():
     return render_template('index.html', content=content)
 
 
-@app.route('/save', methods=['POST'])
+@app.route('/nextevent', methods=['POST'])
 def save():
-    updated_content = request.form['content']
+    updated_content = request.form['next_event']
     with open('notes/next', 'w', encoding='UTF-8', newline='') as file:
+        file.write(updated_content)
+    return render_template('success.html')
+
+
+@app.route('/todolist', methods=['POST'])
+def save():
+    updated_content = request.form['todo_list']
+    with open('notes/todo', 'w', encoding='UTF-8', newline='') as file:
         file.write(updated_content)
     return render_template('success.html')
 

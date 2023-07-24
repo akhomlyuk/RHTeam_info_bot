@@ -1,23 +1,22 @@
 from flask import Flask, render_template, request, redirect
 from config import *
-import logging
 
 app = Flask(__name__, template_folder=r'templates/')
 
 
 @app.route('/')
 def index():
-    with open('brief.py', 'r', encoding='UTF-8', newline='') as file:
+    with open('notes/next', 'r', encoding='UTF-8', newline='') as file:
         content = file.read()
     return render_template('index.html', content=content)
 
 
-# @app.route('/save', methods=['POST'])
-# def save():
-#     updated_content = request.form['content']
-#     with open('brief.py', 'w', encoding='UTF-8', newline='') as file:
-#         file.write(updated_content)
-#     return 'Файл сохранен успешно. <a href="/">Вернуться на главную</a>'
+@app.route('/save', methods=['POST'])
+def save():
+    updated_content = request.form['content']
+    with open('notes/next', 'w', encoding='UTF-8', newline='') as file:
+        file.write(updated_content)
+    return 'Файл сохранен успешно. <a href="/">Вернуться на главную</a>'
 
 
 @app.route('/settings')

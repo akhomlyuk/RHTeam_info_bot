@@ -93,6 +93,18 @@ async def rht_flagbot(message: types.Message):
     await message.reply(f'Flags bot here: {flags_bot}', parse_mode='HTML')
 
 
+@dp.message_handler(Text(equals=user_id_cmds, ignore_case=True))
+async def rht_get_userid(message: types.Message):
+    await message.reply(f'Твой telegram ID: <b>{message.from_user.id}</b>', parse_mode='HTML')
+
+
+@dp.message_handler(Text(equals=next_event_cmds, ignore_case=True))
+async def rht_get_next_event(message: types.Message):
+    with open('notes/next', encoding='UTF-8', newline='') as content:
+        content = content.read()
+    await message.reply(f'''{content}''', parse_mode='HTML')
+
+
 @dp.message_handler(Text(equals=todo_cmds, ignore_case=True))
 async def rht_todo(message: types.Message):
     await message.reply(todo, parse_mode='HTML')

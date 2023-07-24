@@ -1,6 +1,7 @@
 import asyncio
 import threading
 import logging
+import os
 from webserver import app
 from werkzeug.serving import run_simple
 from icecream import ic
@@ -10,12 +11,14 @@ from aiogram.dispatcher.filters import Text, BoundFilter
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, InputFile
 from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
 import wikipedia
-import json
 from config import *
 from functions import rht_best_res, rht_info, top_teams_ru
 from brief import *
 
+os.makedirs('logs', exist_ok=True)
+os.makedirs('notes', exist_ok=True)
 logging.basicConfig(level=logging.INFO, filename='logs/bot.log', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
 
 bot = Bot(token=bot_token)
 dp = Dispatcher(bot)
@@ -255,7 +258,6 @@ async def links_data(callback: types.CallbackQuery):
 @dp.message_handler(Text(equals=send_photo_cmds, ignore_case=True))
 async def bot_send_sticker(message: types.Message):
     photo = InputFile("last.png")
-    # await message.answer_sticker(sticker=r"CAACAgIAAxkBAAEJxCVkurxNbi3yUph4ZkiSoRGWn_BmJAACSCgAAtDiSUtQy_QmRSmjai8E", disable_notification=True)
     # await bot.send_sticker(chat_id=message.chat.id, sticker=r"CAACAgIAAxkBAAEJxCVkurxNbi3yUph4ZkiSoRGWn_BmJAACSCgAAtDiSUtQy_QmRSmjai8E")
     # await bot.send_photo(chat_id=message.chat.id, photo=photo)
     await message.answer_photo(photo, caption='Последний результат')

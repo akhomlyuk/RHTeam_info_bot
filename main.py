@@ -1,4 +1,3 @@
-import asyncio
 import logging
 from contextlib import suppress
 from aiogram import Bot, Dispatcher, types, executor
@@ -17,7 +16,7 @@ logging.basicConfig(level=logging.INFO, filename='logs/bot.log', format='%(ascti
 bot = Bot(token=bot_token)
 dp = Dispatcher(bot)
 
-rht_info = ic(rht_info())
+rht_info = rht_info()
 rht_best = rht_best_res()
 top_ru = top_teams_ru()
 
@@ -262,11 +261,9 @@ async def errors_handler(update: types.Update, exception: Exception):
     logging.error(f'Ошибка при обработке запроса {update}: {exception}')
 
 
-async def on_startup(dp, message: types.Message):
+async def on_startup(dp):
     logging.info(dp)
     logging.info('RHTeam info bot starting...')
-    logging.info(message.chat.id)
-    logging.info(message.chat.description)
 
 
 async def on_shutdown(dp):
@@ -274,12 +271,8 @@ async def on_shutdown(dp):
     await bot.delete_webhook()
     await dp.storage.close()
     await dp.storage.wait_closed()
-    logging.warning("System shutdowned!")
+    logging.warning("System shutdown!")
 
 
-async def main():
-    await dp.start_polling(bot)
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == '__main__':
+    executor.start_polling(dp, on_startup=on_startup, on_shutdown=on_shutdown)

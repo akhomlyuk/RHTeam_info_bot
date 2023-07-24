@@ -175,14 +175,15 @@ async def rht_commands(message: types.Message):
 @dp.message_handler(Text(equals=menu_cmds, ignore_case=True))
 async def menu_buttons(message: types.Message):
     kb_buttons = InlineKeyboardMarkup(row_width=2)
-    info_button = InlineKeyboardButton(text='📰  Информация', callback_data='info_data')
-    results_button = InlineKeyboardButton(text='🏆  Результаты', callback_data='results_data')
-    todo_button = InlineKeyboardButton(text='📝  Список дел', callback_data='todo_data')
-    flagbot_button = InlineKeyboardButton(text='🤖  Флаг бот', callback_data='flagbot_data')
-    brief_button = InlineKeyboardButton(text='📣  Брифинг', callback_data='brief_data')
-    links_button = InlineKeyboardButton(text='💬  Ссылки', callback_data='links_data')
-    top_teams_ru_button = InlineKeyboardButton(text='🇷🇺  Top RU', callback_data='top_ru_data')
-    kb_buttons.add(brief_button, results_button, info_button, flagbot_button, links_button, top_teams_ru_button, todo_button)
+    info_btn = InlineKeyboardButton(text='📰  Информация', callback_data='info_data')
+    results_btn = InlineKeyboardButton(text='🏆  Результаты', callback_data='results_data')
+    todo_btn = InlineKeyboardButton(text='📝  Список дел', callback_data='todo_data')
+    flagbot_btn = InlineKeyboardButton(text='🤖  Флаг бот', callback_data='flagbot_data')
+    brief_btn = InlineKeyboardButton(text='📣  Брифинг', callback_data='brief_data')
+    links_btn = InlineKeyboardButton(text='💬  Ссылки', callback_data='links_data')
+    top_teams_ru_btn = InlineKeyboardButton(text='🇷🇺  Top RU', callback_data='top_ru_data')
+    next_btn = InlineKeyboardButton(text='🔜 След. ивент', callback_data='next_event_data')
+    kb_buttons.add(brief_btn, results_btn, info_btn, flagbot_btn, links_btn, top_teams_ru_btn, todo_btn, next_btn)
     await message.answer('Меню', reply_markup=kb_buttons, disable_notification=True)
 
 
@@ -229,6 +230,14 @@ async def todo_data(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="brief_data")
 async def brief_data(callback: types.CallbackQuery):
     await callback.message.answer(brief, parse_mode='HTML')
+    await callback.answer()
+
+
+@dp.callback_query_handler(text="next_event_data")
+async def next_event_data(callback: types.CallbackQuery):
+    with open('notes/next', encoding='UTF-8', newline='') as content:
+        content = content.read()
+    await callback.message.answer(content, parse_mode='HTML')
     await callback.answer()
 
 

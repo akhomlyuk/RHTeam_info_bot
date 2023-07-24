@@ -277,9 +277,9 @@ async def on_shutdown(dp):
     logging.warning("System shutdowned!")
 
 
-# async def main():
-#     # await dp.start_polling(bot)
+async def main():
+    await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
-    asyncio.run(executor.start_polling(dp, on_startup=on_startup, on_shutdown=on_shutdown))
+    asyncio.run(main())

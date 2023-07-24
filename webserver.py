@@ -12,7 +12,9 @@ logging.basicConfig(level=logging.INFO, filename='logs/flask.log', format='%(asc
 def index():
     with open('notes/next', 'r', encoding='UTF-8', newline='') as file:
         content = file.read()
-    return render_template('index.html', content=content)
+    with open('notes/todo', 'r', encoding='UTF-8', newline='') as todo:
+        todo = todo.read()
+    return render_template('index.html', next_event=content, todo_list=todo)
 
 
 @app.route('/nextevent', methods=['POST'])

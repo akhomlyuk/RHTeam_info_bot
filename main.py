@@ -282,5 +282,4 @@ async def on_shutdown(dp):
 
 
 if __name__ == "__main__":
-    start = executor.start_polling(dp, on_startup=on_startup, on_shutdown=on_shutdown)
-    asyncio.run(start)
+    asyncio.run(executor.start_polling(dp, on_startup=on_startup, on_shutdown=on_shutdown))

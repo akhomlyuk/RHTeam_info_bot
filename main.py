@@ -1,7 +1,7 @@
 import asyncio
 import logging
 from contextlib import suppress
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher, types, executor
 from aiogram.dispatcher.filters import Text, BoundFilter
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, InputFile
 from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
@@ -262,9 +262,24 @@ async def errors_handler(update: types.Update, exception: Exception):
     logging.error(f'Ошибка при обработке запроса {update}: {exception}')
 
 
-async def main():
-    await dp.start_polling(bot)
+async def on_startup(dp):
+    logging.info(dp)
+    logging.info('RHTeam info bot starting...')
+
+
+async def on_shutdown(dp):
+    logging.warning("Shutting down..")
+    await bot.delete_webhook()
+    await dp.storage.close()
+    await dp.storage.wait_closed()
+    logging.warning("System shutdowned!")
+
+
+# async def main():
+#     await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    # asyncio.run(main())
+    executor.start_polling(dp, on_startup=on_startup, on_shutdown=on_shutdown)
+

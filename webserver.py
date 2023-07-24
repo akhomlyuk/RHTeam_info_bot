@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from config import *
-
+from brief import *
 app = Flask(__name__, template_folder=r'templates/')
 
 
@@ -21,9 +21,9 @@ def save():
 
 @app.route('/settings')
 def show_settings():
-    with open('config.py', 'r', encoding='UTF-8', newline='') as file:
-        content = file.read()
-    return render_template('settings.html', token=results_cmds, content=content)
+    # with open('config.py', 'r', encoding='UTF-8', newline='') as file:
+    #     content = file.read()
+    return render_template('settings.html', token=results_cmds, content=brief)
 #
 #
 # @app.route('/update_commands', methods=['POST'])

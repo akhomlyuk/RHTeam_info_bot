@@ -2,3 +2,4 @@ eno.py
 gen_token.py
 rev.py
 .idea
+logs/bot.log

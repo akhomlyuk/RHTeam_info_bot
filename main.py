@@ -280,4 +280,4 @@ if __name__ == "__main__":
     bot_thread = threading.Thread(target=run_bot)
     bot_thread.start()
 
-    run_simple('0.0.0.0', 3000, app, use_reloader=True, threaded=True)
+    run_simple('0.0.0.0', 3000, app, use_reloader=True)

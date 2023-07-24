@@ -220,6 +220,8 @@ async def flagbot_data(callback: types.CallbackQuery):
 
 @dp.callback_query_handler(text="todo_data")
 async def todo_data(callback: types.CallbackQuery):
+    with open('notes/todo', encoding='UTF-8', newline='') as todo:
+        todo = todo.read()
     await callback.message.answer(todo, parse_mode='HTML')
     await callback.answer()
 

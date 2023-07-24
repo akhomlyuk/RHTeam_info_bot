@@ -262,9 +262,11 @@ async def errors_handler(update: types.Update, exception: Exception):
     logging.error(f'Ошибка при обработке запроса {update}: {exception}')
 
 
-async def on_startup(dp):
+async def on_startup(dp, message: types.Message):
     logging.info(dp)
     logging.info('RHTeam info bot starting...')
+    logging.info(message.chat.id)
+    logging.info(message.chat.description)
 
 
 async def on_shutdown(dp):
@@ -275,11 +277,12 @@ async def on_shutdown(dp):
     logging.warning("System shutdowned!")
 
 
-# async def main():
-#     await dp.start_polling(bot)
+async def main():
+    # await dp.start_polling(bot)
+    await executor.start_polling(dp, on_startup=on_startup, on_shutdown=on_shutdown)
 
 
 if __name__ == "__main__":
-    # asyncio.run(main())
-    executor.start_polling(dp, on_startup=on_startup, on_shutdown=on_shutdown)
+    asyncio.run(main())
+
 

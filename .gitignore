@@ -1,6 +1,7 @@
-!logs/
-!/notes/next
-!/rev.py
-!/.idea/
-!/eno.py
-!/gen_token.py
+logs/
+notes/next
+rev.py
+.idea/
+eno.py
+gen_token.py
+*.log

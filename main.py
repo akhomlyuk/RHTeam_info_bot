@@ -266,15 +266,5 @@ async def main():
     await dp.start_polling(bot)
 
 
-# def run_bot():
-#     loop = asyncio.new_event_loop()
-#     asyncio.set_event_loop(loop)
-#     loop.run_until_complete(main())
-
-
 if __name__ == "__main__":
     asyncio.run(main())
-    # bot_thread = threading.Thread(target=run_bot)
-    # bot_thread.start()
-
-    # run_simple('0.0.0.0', 3000, app, use_reloader=True)

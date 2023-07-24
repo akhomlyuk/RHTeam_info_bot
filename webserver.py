@@ -20,7 +20,7 @@ def save():
     updated_content = request.form['content']
     with open('notes/next', 'w', encoding='UTF-8', newline='') as file:
         file.write(updated_content)
-    return 'Файл сохранен успешно. <a href="/">Вернуться на главную</a>'
+    return render_template('success.html')
 
 
 @app.route('/settings')

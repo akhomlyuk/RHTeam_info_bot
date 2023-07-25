@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h3>Регистрация</h3>
+    <div class="mb-3 row">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+             <div class="alert alert-danger" role="alert">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/signup">
+            <div class="form-group row">
+            <div class="mb-3 row">
+            <div class="col-sm-6">
+                <input class="form-control" type="text" name="name" placeholder="Логин" autofocus="">
+            </div>
+          </div>
+
+            <div class="mb-3 row">
+            <div class="col-sm-6">
+                 <input class="form-control" type="password" name="password" placeholder="Пароль">
+            </div>
+          </div>
+                <div class="mb-3 row">
+            <div class="col-sm-6">
+                 <input class="form-control" type="text" name="invite" placeholder="Инвайт">
+            </div>
+          </div>
+            </div>
+            <button class="mt-2 mb-2 btn btn-dark">Зарегаться</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

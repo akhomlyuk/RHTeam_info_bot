@@ -40,14 +40,5 @@ def show_settings():
     return render_template('settings.html', content=brief)
 
 
-#
-#
-# @app.route('/update_commands', methods=['POST'])
-# def update_commands():
-#     new_cmd = request.form['cmd']
-#
-#     return redirect('/settings')
-
-
 if __name__ == "__main__":
     ic(app.run(host='0.0.0.0', port=3000))

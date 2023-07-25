@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if not current_user.is_authenticated %}
+<div class="alert alert-danger" role="alert">
+  Брифинг доступен после авторизации
+</div>
+
+<a href="{{ url_for('auth.login') }}">Войти</a> или <a href="{{ url_for('auth.signup') }}">зарегистрироваться</a>
+{% endif %}
+
+{% if current_user.is_authenticated %}
+
+ <div class="container">
+            <div class="col-sm-3 my-1">
+        <h2>Брифинг</h2>
+
+      </div>
+    <div>
+      <pre>{{ content }}</pre>
+    </div>
+    </div>
+
+{% endif %}
+
+{% endblock %}

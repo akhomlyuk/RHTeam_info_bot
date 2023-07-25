@@ -3,12 +3,12 @@
 {% block content %}
 <div class="container">
 
-  <div class="card border-dark mb-3" style="max-width: 36rem;">
+  <div class="card border-dark mb-3">
   <div class="card-header">Добро пожаловать, {{ name }}!</div>
   <div class="card-body text-dark">
     <h5 class="card-title">Позже обязательно что-нибудь добавим</h5>
      <p class="card-text">Вы состоите в группе - {{ current_user.group }}</p>
-      <p class="card-text">Инвайт для приглашения - {{ invite }}</p>
+      <p class="card-text">Инвайт для приглашения - {% if current_user.group == 'admins' %} {{ invite }} {% else %} у админа {% endif %}</p>
   </div>
 </div>
 

@@ -2,10 +2,10 @@ import os
 import logging
 from flask import Blueprint, render_template, request, send_from_directory
 from flask_login import login_required, current_user
-from brief import *
 
 main = Blueprint('main', __name__)
 
+brief_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'notes', 'brief'))
 next_event_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'notes', 'next'))
 todo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'notes', 'todo'))
 log_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'logs', 'web.log'))
@@ -34,6 +34,14 @@ def save_nextevent():
     return render_template('success.html', next_event=updated_content)
 
 
+@main.route('/savebrief', methods=['POST'])
+def save_brief():
+    updated_content = request.form['brief']
+    with open(brief_path, 'w', encoding='UTF-8', newline='') as file:
+        file.write(updated_content)
+    return render_template('success.html', brief=updated_content)
+
+
 @main.route('/todolist', methods=['POST'])
 def save_todolist():
     updated_content = request.form['todo_list']
@@ -44,9 +52,9 @@ def save_todolist():
 
 @main.route('/settings')
 def show_settings():
-    # with open('config.py', 'r', encoding='UTF-8', newline='') as file:
-    #     content = file.read()
-    return render_template('settings.html', content=brief)
+    with open('notes/brief', 'r', encoding='UTF-8', newline='') as file:
+        brief = file.read()
+    return render_template('settings.html', brief=brief)
 
 
 @main.route('/profile')

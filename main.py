@@ -7,7 +7,7 @@ from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFou
 import wikipedia
 from config import *
 from functions import rht_best_res, rht_info, top_teams_ru
-from brief import *
+from brief import ngrok
 
 os.makedirs('logs', exist_ok=True)
 os.makedirs('notes', exist_ok=True)
@@ -148,7 +148,9 @@ async def url_buttons(message: types.Message):
 
 @dp.message_handler(Text(equals=brief_cmds, ignore_case=True))
 async def rht_brief(message: types.Message):
-    await message.reply(brief, parse_mode='HTML')
+    with open('notes/brief', encoding='UTF-8', newline='') as content:
+        brief = content.read()
+    await message.reply(f'''{brief}''', parse_mode='HTML')
 
 
 @dp.message_handler(Text(equals=ngrok_cmds, ignore_case=True))
@@ -229,7 +231,9 @@ async def todo_data(callback: types.CallbackQuery):
 
 @dp.callback_query_handler(text="brief_data")
 async def brief_data(callback: types.CallbackQuery):
-    await callback.message.answer(brief, parse_mode='HTML')
+    with open('notes/brief', encoding='UTF-8', newline='') as content:
+        brief = content.read()
+    await callback.message.answer(f'''{brief}''', parse_mode='HTML')
     await callback.answer()
 
 

@@ -10,15 +10,34 @@
 <a href="{{ url_for('auth.login') }}">Войти</a> или <a href="{{ url_for('auth.signup') }}">зарегистрироваться</a>
 {% endif %}
 
+  {% if current_user.group == 'admins' %}
+    <div class="container">
+
+        <h3>Брифинг:</h3>
+    <form action="/savebrief" method="post">
+        <div class="form-group row">
+            <div class="my-2 col-md-8 my-2">
+
+        <textarea name="brief" class="form-control" id="brief_textarea" rows="10">{{ brief }}</textarea>
+            </div>
+        </div>
+        <div class="form-row align-items-center">
+            <div class="col-sm-3 my-1">
+        <button type="submit" value="Сохранить" class="mt-2 mb-2 btn btn-outline-primary">Сохранить</button>
+            </div>
+        </div>
+    </form>
+    </div>
+{% endif %}
+
 {% if current_user.is_authenticated %}
 
  <div class="container">
             <div class="col-sm-3 my-1">
-        <h2>Брифинг</h2>
-
+        <h3>Брифинг</h3>
       </div>
     <div>
-      <pre>{{ content }}</pre>
+      <pre>{{ brief }}</pre>
     </div>
     </div>
 

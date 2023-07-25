@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="form-row align-items-center">
+            <div class="col-md-8 my-2">
+                <div class="alert alert-success" role="alert">
+                    Файл успешно сохранен!
+                </div>
+                 <div class="card border-dark mb-3">
+                  <div class="card-header">Добро пожаловать, {{ name }}!</div>
+                  <div class="card-body text-dark">
+                    <h5 class="card-title">Инфо</h5>
+                     <p class="card-text">{{ next_event }} {{ todo_list }} {{ brief }}</p>
+                  </div>
+                </div>
+            </div>
+    </div>
+    </div>
+
+{% endblock %}

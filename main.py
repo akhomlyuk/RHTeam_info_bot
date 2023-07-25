@@ -61,7 +61,7 @@ async def new_members_handler(message: Message):
 
 @dp.message_handler(Text(equals=results_cmds, ignore_case=True))
 async def rht_results(message: types.Message):
-    await message.reply(f'''Best 9 results: {rht_best[1]} + CODEBY org(45.82) = <b>{rht_info["rating"]["2023"]["rating_points"]}</b>\n
+    await message.reply(f'''Best 9 results: {round(rht_best[1], 3)} + CODEBY org(45.82) = <b>{rht_info["rating"]["2023"]["rating_points"]}</b>\n
 {rht_best[2][0]}
 {rht_best[2][1]}
 {rht_best[2][2]}
@@ -191,7 +191,7 @@ async def menu_buttons(message: types.Message):
 
 @dp.callback_query_handler(text="results_data")
 async def results_data(callback: types.CallbackQuery):
-    await callback.message.answer(f'''Best 9 results: {rht_best[1]} + CODEBY org(45.82) = <b>{rht_info["rating"]["2023"]["rating_points"]}</b>\n
+    await callback.message.answer(f'''Best 9 results: {round(rht_best[1], 3)} + CODEBY org(45.82) = <b>{rht_info["rating"]["2023"]["rating_points"]}</b>\n
 {rht_best[2][0]}
 {rht_best[2][1]}
 {rht_best[2][2]}

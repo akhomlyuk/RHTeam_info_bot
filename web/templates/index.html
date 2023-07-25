@@ -18,12 +18,13 @@
             <div class="col-sm-3 my-1">
         <button type="submit" value="Сохранить" class="mt-2 mb-2 btn btn-outline-primary">Сохранить</button>
             </div>
-            {% elif current_user.group == 'users' %}
-                {{ next_event }}
+        </div>
+    </form>
+        {% elif current_user.group == 'users' %}
+         <div class="col-md-auto my-2">
+                {{ next_event|safe }}
                 {% endif %}
         </div>
-
-    </form>
 
         <h3>Список дел:</h3>
      <form action="/todolist" method="post">
@@ -37,13 +38,15 @@
             <div class="col-sm-3 my-1">
         <button type="submit" value="Сохранить" class="mt-2 mb-2 btn btn-outline-primary">Сохранить</button>
             </div>
-             {% elif current_user.group == 'users' %}
-                {{ todo_list }}
-                {% endif %}
+
         </div>
     </form>
 
-
+    {% elif current_user.group == 'users' %}
+        <div class="col-md-auto my-2">
+                {{ todo_list|safe }}
+                {% endif %}
+        </div>
     </div>
 {% endif %}
 

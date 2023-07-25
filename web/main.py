@@ -52,7 +52,7 @@ def save_todolist():
 
 @main.route('/settings')
 def show_settings():
-    with open('notes/brief', 'r', encoding='UTF-8', newline='') as file:
+    with open(brief_path, 'r', encoding='UTF-8', newline='') as file:
         brief = file.read()
     return render_template('settings.html', brief=brief)
 

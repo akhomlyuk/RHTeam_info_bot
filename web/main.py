@@ -27,6 +27,7 @@ def index():
 
 
 @main.route('/nextevent', methods=['POST'])
+@login_required
 def save_nextevent():
     updated_content = request.form['next_event']
     with open(next_event_path, 'w', encoding='UTF-8', newline='') as file:
@@ -35,6 +36,7 @@ def save_nextevent():
 
 
 @main.route('/savebrief', methods=['POST'])
+@login_required
 def save_brief():
     updated_content = request.form['brief']
     with open(brief_path, 'w', encoding='UTF-8', newline='') as file:
@@ -43,6 +45,7 @@ def save_brief():
 
 
 @main.route('/todolist', methods=['POST'])
+@login_required
 def save_todolist():
     updated_content = request.form['todo_list']
     with open(todo_path, 'w', encoding='UTF-8', newline='') as file:
@@ -51,6 +54,7 @@ def save_todolist():
 
 
 @main.route('/settings')
+@login_required
 def show_settings():
     with open(brief_path, 'r', encoding='UTF-8', newline='') as file:
         brief = file.read()

@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO, filename=log_path, format='%(asctime)s -
 def index():
     with open(next_event_path, 'r', encoding='UTF-8', newline='') as file:
         content = file.read()
-    with open('notes/todo', 'r', encoding='UTF-8', newline='') as todo:
+    with open(todo_path, 'r', encoding='UTF-8', newline='') as todo:
         todo = todo.read()
     return render_template('index.html', next_event=content, todo_list=todo)
 

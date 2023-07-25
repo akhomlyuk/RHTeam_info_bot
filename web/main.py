@@ -5,10 +5,11 @@ from flask_login import login_required, current_user
 from brief import *
 
 main = Blueprint('main', __name__)
-logging.basicConfig(level=logging.INFO, filename='logs/web.log', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 next_event_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'notes', 'next'))
 todo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'notes', 'todo'))
+log_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'logs', 'web.log'))
+logging.basicConfig(level=logging.INFO, filename=log_path, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
 @main.route('/')

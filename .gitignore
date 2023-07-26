@@ -6,3 +6,4 @@ eno.py
 gen_token.py
 *.log
 __pycache__/
+*.db

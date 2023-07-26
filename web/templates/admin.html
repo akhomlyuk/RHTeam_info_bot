@@ -21,19 +21,19 @@
         <h5 class="card-title">{{ user.name }}
           {% if user.group != 'Admins' and user.id != 1 %}
          <a class="text-decoration-none" href="{{ url_for('main.set_admins_group_route', user_id=user.id) }}">
-            <i title="Дать админку" class="mx-1 bi bi-person-check" style="color: green;"></i>
+            <i title="Дать админку" class="bi bi-person-add" style="color: green;"></i>
          </a>
         {% endif %}
 
             {% if user.group == 'Admins' and user.id != 1 %}
          <a class="text-decoration-none" href="{{ url_for('main.set_users_group_route', user_id=user.id) }}">
-            <i title="Поставить в юзеры" class="mx-1 bi bi-person-exclamation" style="color: red;"></i>
+            <i title="Поставить в юзеры" class="bi bi-person-dash" style="color: red;"></i>
          </a>
         {% endif %}
 
             {% if user.group != 'Admins' and user.group != 'admins' %}
          <a class="text-decoration-none" href="{{ url_for('main.delete_user_route', user_id=user.id) }}">
-             <i title="Удалить юзера" class="mx-1 bi bi-trash" style="color: red;"></i>
+             <i title="Удалить юзера"  class="bi bi-trash2 text-danger"></i>
          </a>
 
         {% endif %}

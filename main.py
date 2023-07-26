@@ -21,14 +21,6 @@ rht_best = rht_best_res()
 top_ru = top_teams_ru()
 
 
-# @dp.message_handler(commands=['start', 'go', 'run'])
-# async def cmd_start(message: types.Message):
-#     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-#     buttons = ["Results", "Info", 'Flagbot', 'Cmds', 'RHT-git']
-#     keyboard.add(*buttons)
-#     await message.answer("Choose action:", reply_markup=keyboard)
-
-
 class IsAdmin(BoundFilter):
     key = 'is_admin'
 
@@ -191,7 +183,8 @@ async def menu_buttons(message: types.Message):
 
 @dp.callback_query_handler(text="results_data")
 async def results_data(callback: types.CallbackQuery):
-    await callback.message.answer(f'''Best 9 results: {round(rht_best[1], 3)} + CODEBY org(45.82) = <b>{rht_info["rating"]["2023"]["rating_points"]}</b>\n
+    await callback.message.answer(
+        f'''Best 9 results: {round(rht_best[1], 3)} + CODEBY org(45.82) = <b>{rht_info["rating"]["2023"]["rating_points"]}</b>\n
 {rht_best[2][0]}
 {rht_best[2][1]}
 {rht_best[2][2]}
@@ -269,7 +262,6 @@ async def links_data(callback: types.CallbackQuery):
 async def bot_send_sticker(message: types.Message):
     photo = InputFile("last.png")
     # await bot.send_sticker(chat_id=message.chat.id, sticker=r"CAACAgIAAxkBAAEJxCVkurxNbi3yUph4ZkiSoRGWn_BmJAACSCgAAtDiSUtQy_QmRSmjai8E")
-    # await bot.send_photo(chat_id=message.chat.id, photo=photo)
     await message.answer_photo(photo, caption='Последний результат')
 
 

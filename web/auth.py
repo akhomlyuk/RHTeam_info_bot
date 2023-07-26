@@ -48,7 +48,7 @@ def signup_post():
         flash('Неверный инвайт!')
         return redirect(url_for('auth.signup'))
 
-    new_user = ic(User(name=name, password=generate_password_hash(password, method='scrypt'), group='users', active=True))
+    new_user = ic(User(name=name, password=generate_password_hash(password, method='scrypt'), group='RHTeam', active=True))
     db.session.add(new_user)
     db.session.commit()
 

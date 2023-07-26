@@ -22,6 +22,13 @@
         <li class="nav-item">
        <a href="/" class="mx-1 my-1 btn btn-outline-primary" role="button">Главная</a>
         </li>
+          {% if current_user.group == 'admins' %}
+          <li>
+        <a href="/adm" class="mx-1 my-1 btn btn-outline-primary" role="button">
+            Админка
+        </a>
+              </li>
+          {% endif %}
           <li>
       <a href="/settings" class="mx-1 my-1 btn btn-outline-primary" role="button">Брифинг</a>
               </li>

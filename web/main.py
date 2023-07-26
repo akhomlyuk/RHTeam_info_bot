@@ -2,6 +2,7 @@ import os
 import logging
 from flask import Blueprint, render_template, request, send_from_directory
 from flask_login import login_required, current_user
+from .db_functions import show_users
 
 main = Blueprint('main', __name__)
 
@@ -24,6 +25,13 @@ def index():
     with open(todo_path, 'r', encoding='UTF-8', newline='') as todo:
         todo = todo.read()
     return render_template('index.html', next_event=content, todo_list=todo)
+
+
+@main.route('/adm')
+@login_required
+def admin_panel():
+    show_user = show_users()
+    return render_template('admin.html', users=show_user)
 
 
 @main.route('/nextevent', methods=['POST'])

@@ -1,8 +1,8 @@
 import os
 import logging
-from flask import Blueprint, render_template, request, send_from_directory
+from flask import Blueprint, render_template, request, send_from_directory, redirect, url_for, flash
 from flask_login import login_required, current_user
-from .db_functions import show_users
+from .db_functions import show_users, set_admins_group, set_users_group, delete_user
 
 main = Blueprint('main', __name__)
 
@@ -32,6 +32,30 @@ def index():
 def admin_panel():
     show_user = show_users()
     return render_template('admin.html', users=show_user)
+
+
+@main.route('/set_admins_group/<int:user_id>')
+@login_required
+def set_admins_group_route(user_id):
+    set_admins_group(user_id)
+    flash('Группа успешно изменена')
+    return redirect(url_for('main.admin_panel'))
+
+
+@main.route('/set_users_group/<int:user_id>')
+@login_required
+def set_users_group_route(user_id):
+    set_users_group(user_id)
+    flash('Группа успешно изменена')
+    return redirect(url_for('main.admin_panel'))
+
+
+@main.route('/delete_user/<int:user_id>')
+@login_required
+def delete_user_route(user_id):
+    delete_user(user_id)
+    flash('Пользователь удален')
+    return redirect(url_for('main.admin_panel'))
 
 
 @main.route('/nextevent', methods=['POST'])

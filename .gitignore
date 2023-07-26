@@ -1,5 +1,7 @@
 logs/
 notes/next
+/notes/brief
+/notes/todo
 rev.py
 .idea/
 eno.py

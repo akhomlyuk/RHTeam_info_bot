@@ -3,6 +3,7 @@ import logging
 from flask import Blueprint, render_template, request, send_from_directory, redirect, url_for, flash
 from flask_login import login_required, current_user
 from .db_functions import show_users, set_admins_group, set_users_group, delete_user
+from .auth import admin_required
 
 main = Blueprint('main', __name__)
 
@@ -28,14 +29,14 @@ def index():
 
 
 @main.route('/adm')
-@login_required
+@admin_required
 def admin_panel():
     show_user = show_users()
     return render_template('admin.html', users=show_user)
 
 
 @main.route('/set_admins_group/<int:user_id>')
-@login_required
+@admin_required
 def set_admins_group_route(user_id):
     set_admins_group(user_id)
     flash('Группа успешно изменена')
@@ -43,7 +44,7 @@ def set_admins_group_route(user_id):
 
 
 @main.route('/set_users_group/<int:user_id>')
-@login_required
+@admin_required
 def set_users_group_route(user_id):
     set_users_group(user_id)
     flash('Группа успешно изменена')
@@ -51,7 +52,7 @@ def set_users_group_route(user_id):
 
 
 @main.route('/delete_user/<int:user_id>')
-@login_required
+@admin_required
 def delete_user_route(user_id):
     delete_user(user_id)
     flash('Пользователь удален')
@@ -59,7 +60,7 @@ def delete_user_route(user_id):
 
 
 @main.route('/nextevent', methods=['POST'])
-@login_required
+@admin_required
 def save_nextevent():
     updated_content = request.form['next_event']
     with open(next_event_path, 'w', encoding='UTF-8', newline='') as file:
@@ -68,7 +69,7 @@ def save_nextevent():
 
 
 @main.route('/savebrief', methods=['POST'])
-@login_required
+@admin_required
 def save_brief():
     updated_content = request.form['brief']
     with open(brief_path, 'w', encoding='UTF-8', newline='') as file:
@@ -77,7 +78,7 @@ def save_brief():
 
 
 @main.route('/todolist', methods=['POST'])
-@login_required
+@admin_required
 def save_todolist():
     updated_content = request.form['todo_list']
     with open(todo_path, 'w', encoding='UTF-8', newline='') as file:

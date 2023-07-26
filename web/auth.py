@@ -1,11 +1,23 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, abort
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from .models import User
 from . import db
 from icecream import ic
+from functools import wraps
 
 auth = Blueprint('auth', __name__)
+
+
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not current_user.is_authenticated:
+            abort(403)
+        elif current_user.group != 'admins' and current_user.group != 'Admins':
+            abort(403)
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 @auth.route('/login')

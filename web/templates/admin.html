@@ -4,12 +4,12 @@
 
 
 
-    <div class="container">
 
+<div class="row row-cols-1 row-cols-md-2 g-2">
         {% for user in users %}
 
-        <div class="col-6">
-    <div class="mt-1 card text-bg-light">
+  <div class="col">
+    <div class="card text-bg-light">
       <div class="card-body">
         <h5 class="card-title">{{ user.name }}</h5>
           <p class="card-text">ID: <b>{{ user.id }}</b>  Группа: <b>{{ user.group }}</b></p>
@@ -18,7 +18,7 @@
   </div>
 
 {% endfor %}
+</div>
 
-    </div>
 
 {% endblock %}

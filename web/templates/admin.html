@@ -5,11 +5,18 @@
 
 
     <div class="container">
+
         {% for user in users %}
 
-        {{ user|safe }}
+        <div class="col-6">
+    <div class="mt-1 card text-bg-light">
+      <div class="card-body">
+        <h5 class="card-title">{{ user.name }}</h5>
+          <p class="card-text">ID: <b>{{ user.id }}</b>  Группа: <b>{{ user.group }}</b></p>
+      </div>
+    </div>
+  </div>
 
-    <br>
 {% endfor %}
 
     </div>

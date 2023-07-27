@@ -87,7 +87,7 @@ async def rht_flagbot(message: types.Message):
 @dp.message_handler(Text(equals=user_id_cmds, ignore_case=True))
 async def rht_get_userid(message: types.Message):
     user_id = message.from_user.id
-    prem = message.from_user.first_name
+    prem = message.location.as_json()
     await message.reply(f'Твой telegram ID: <b>{user_id}</b> Premium: {prem}', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 

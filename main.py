@@ -8,7 +8,6 @@ import wikipedia
 from keyboards import del_msg_btn, url_buttons, menu_buttons
 from config import *
 from functions import rht_best_res, rht_info, top_teams_ru
-from brief import ngrok
 
 os.makedirs('logs', exist_ok=True)
 os.makedirs('notes', exist_ok=True)
@@ -33,6 +32,7 @@ class IsAdmin(BoundFilter):
         return member.is_chat_admin()
 
 
+# Вызов inline кнопки удалить под сообщениями бота, кнопки в keyboards
 @dp.callback_query_handler(lambda callback_query: callback_query.data == 'delete_message')
 async def delete_message(callback_query: types.CallbackQuery):
     message = callback_query.message
@@ -70,16 +70,7 @@ async def new_members_handler(message: Message):
 
 @dp.message_handler(Text(equals=results_cmds, ignore_case=True))
 async def rht_results(message: types.Message):
-    await message.reply(f'''Best 9 results: {round(rht_best[1], 3)} + CODEBY org(45.82) = <b>{rht_info["rating"]["2023"]["rating_points"]}</b>\n
-{rht_best[2][0]}
-{rht_best[2][1]}
-{rht_best[2][2]}
-{rht_best[2][3]}
-{rht_best[2][4]}
-{rht_best[2][5]}
-{rht_best[2][6]}
-{rht_best[2][7]}
-{rht_best[2][8]}''', parse_mode='HTML', reply_markup=await del_msg_btn())
+    await message.reply(top10_results, parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=info_cmds, ignore_case=True))
@@ -159,9 +150,6 @@ async def rht_brief(message: types.Message):
 @dp.message_handler(Text(equals=ngrok_cmds, ignore_case=True))
 async def rht_ngrok(message: types.Message):
     await message.reply(ngrok[0], parse_mode='HTML', reply_markup=await del_msg_btn())
-
-
-# Вызов inline кнопки удалить под сообщениями бота, кнопки в keyboards
 
 
 @dp.message_handler(Text(equals=commands_cmds, ignore_case=True))

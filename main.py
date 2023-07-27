@@ -220,7 +220,7 @@ async def on_startup(dp):
 
 
 async def main():
-    await executor.start_polling(dp, on_startup=on_startup)
+    await dp.start_polling(bot)
 
 
 if __name__ == '__main__':

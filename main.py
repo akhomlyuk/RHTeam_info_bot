@@ -218,10 +218,10 @@ async def on_startup(dp):
 
 
 async def main():
+    logging.info('Bot starting...')
     await dp.start_polling(bot)
 
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, filename='logs/bot.log', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    # executor.start_polling(dp, on_startup=on_startup)
     asyncio.run(main())

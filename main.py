@@ -12,7 +12,6 @@ from models import IsAdmin
 
 os.makedirs('logs', exist_ok=True)
 os.makedirs('notes', exist_ok=True)
-logging.basicConfig(level=logging.INFO, filename='logs/bot.log', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 bot = Bot(token=bot_token)
 dp = Dispatcher(bot)
@@ -224,4 +223,5 @@ async def on_startup(dp):
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO, filename='logs/bot.log', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     executor.start_polling(dp, on_startup=on_startup)

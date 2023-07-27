@@ -1,12 +1,15 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash, abort
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
+import datetime
 from .models import User
 from . import db
 from icecream import ic
 from functools import wraps
 
 auth = Blueprint('auth', __name__)
+
+current_datetime = datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
 
 
 def admin_required(f):
@@ -37,7 +40,10 @@ def login_post():
         flash('Проверьте введенные данные или зарегистрируйтесь')
         return redirect(url_for('auth.login'))
 
-    ic(login_user(user, remember=remember))
+    login_user(user, remember=remember)
+    if ic(login_user(user)):
+        user.last_login_date = datetime.datetime.now()
+        db.session.commit()
     return redirect(url_for('main.profile'))
 
 

@@ -145,6 +145,7 @@ async def rht_ngrok(message: types.Message):
     await message.reply(ngrok[0], parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
+# Вызов inline кнопки удалить под сообщениями бота, кнопки в keyboards
 @dp.callback_query_handler(lambda callback_query: callback_query.data == 'delete_message')
 async def delete_message(callback_query: types.CallbackQuery):
     message = callback_query.message
@@ -171,6 +172,7 @@ async def rht_commands(message: types.Message):
 ⌨️ Commands: <b>{' : '.join(str(c) for c in commands_cmds)}</b>''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
+# Вызов кнопок меню, кнопки в keyboards
 @dp.message_handler(Text(equals=menu_cmds, ignore_case=True))
 async def handle_menu_buttons(message: types.Message):
     await menu_buttons(message)

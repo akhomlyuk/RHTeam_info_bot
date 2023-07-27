@@ -11,4 +11,5 @@ class User(UserMixin, db.Model):
     active = db.Column(db.Boolean())
     user_group = db.Column(db.String(100))
     created_on = db.Column(db.DateTime(), default=datetime.now())
+    last_login_date = db.Column(db.DateTime(), default=datetime.now())
     isadmin = db.Column(db.Boolean())

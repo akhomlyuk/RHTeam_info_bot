@@ -6,7 +6,8 @@ def show_users():
     users = User.query.all()
     users_list = []
     for user in users:
-        users_list.append({'id': user.id, 'name': user.name, 'user_group': user.user_group, 'active': user.active, 'isadmin': user.isadmin})
+        users_list.append({'id': user.id, 'name': user.name, 'user_group': user.user_group, 'active': user.active,
+                           'isadmin': user.isadmin, 'last_login_date': user.last_login_date})
     return users_list
 
 

@@ -75,12 +75,7 @@ async def rht_results(message: types.Message):
 
 @dp.message_handler(Text(equals=info_cmds, ignore_case=True))
 async def rht_information(message: types.Message):
-    rating_place = rht_info["rating"]["2023"]["rating_place"]
-    await message.reply(f'''🌍 Worldwide position: <b>{rating_place}</b>
-🇷🇺 RU position: <b>{rht_info["rating"]["2023"]["country_place"]}</b>
-🎯 Rating points: <b>{rht_info["rating"]["2023"]["rating_points"]}</b>
-🚩 Team ID: <b>{rht_info["id"]}</b>
-https://ctftime.org/team/186788''', parse_mode='HTML', reply_markup=await del_msg_btn())
+    await message.reply(rht_summary, parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=flag_cmds, ignore_case=True))
@@ -91,7 +86,7 @@ async def rht_flagbot(message: types.Message):
 
 @dp.message_handler(Text(equals=user_id_cmds, ignore_case=True))
 async def rht_get_userid(message: types.Message):
-    await message.reply(f'Твой telegram ID: <b>{message.from_user.id}</b>', parse_mode='HTML', reply_markup=await del_msg_btn())
+    await message.reply(f'Твой telegram ID: <b>{message.from_user.id}</b> Premium: {message.from_user.is_premium}', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=next_event_cmds, ignore_case=True))

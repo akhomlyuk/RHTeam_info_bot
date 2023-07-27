@@ -36,6 +36,12 @@ top10_results = f'''Best 9 results: {round(rht_best[1], 3)} + CODEBY org(45.82) 
 {rht_best[2][7]}
 {rht_best[2][8]}'''
 
+rht_summary = f'''🌍 Worldwide position: <b>{rht_info["rating"]["2023"]["rating_place"]}</b>
+🇷🇺 RU position: <b>{rht_info["rating"]["2023"]["country_place"]}</b>
+🎯 Rating points: <b>{rht_info["rating"]["2023"]["rating_points"]}</b>
+🚩 Team ID: <b>{rht_info["id"]}</b>
+https://ctftime.org/team/186788'''
+
 commands = f'''📜 Information: <b>{' : '.join(str(c) for c in info_cmds)}</b>
 📈 Results: <b>{' : '.join(str(c) for c in results_cmds)}</b>
 🔖 Menu: <b>{' : '.join(str(c) for c in menu_cmds)}</b>

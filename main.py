@@ -5,6 +5,7 @@ from aiogram.dispatcher.filters import Text, BoundFilter
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, InputFile
 from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
 import wikipedia
+from keyboards import del_msg_btn
 from config import *
 from functions import rht_best_res, rht_info, top_teams_ru
 from brief import ngrok
@@ -62,7 +63,7 @@ async def rht_results(message: types.Message):
 {rht_best[2][5]}
 {rht_best[2][6]}
 {rht_best[2][7]}
-{rht_best[2][8]}''', parse_mode='HTML')
+{rht_best[2][8]}''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=info_cmds, ignore_case=True))
@@ -72,39 +73,39 @@ async def rht_information(message: types.Message):
 🇷🇺 RU position: <b>{rht_info["rating"]["2023"]["country_place"]}</b>
 🎯 Rating points: <b>{rht_info["rating"]["2023"]["rating_points"]}</b>
 🚩 Team ID: <b>{rht_info["id"]}</b>
-https://ctftime.org/team/186788''', parse_mode='HTML')
+https://ctftime.org/team/186788''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=flag_cmds, ignore_case=True))
 async def rht_flagbot(message: types.Message):
     flags_bot = '@rhtflagsbot'
-    await message.reply(f'Flags bot here: {flags_bot}', parse_mode='HTML')
+    await message.reply(f'Flags bot here: {flags_bot}', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=user_id_cmds, ignore_case=True))
 async def rht_get_userid(message: types.Message):
-    await message.reply(f'Твой telegram ID: <b>{message.from_user.id}</b>', parse_mode='HTML')
+    await message.reply(f'Твой telegram ID: <b>{message.from_user.id}</b>', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=next_event_cmds, ignore_case=True))
 async def rht_get_next_event(message: types.Message):
     with open('notes/next', encoding='UTF-8', newline='') as content:
         content = content.read()
-    await message.reply(f'''{content}''', parse_mode='HTML')
+    await message.reply(f'''{content}''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=todo_cmds, ignore_case=True))
 async def rht_todo(message: types.Message):
     with open('notes/todo', encoding='UTF-8', newline='') as content:
         content = content.read()
-    await message.reply(f'''{content}''', parse_mode='HTML')
+    await message.reply(f'''{content}''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=git_cmds, ignore_case=True))
 async def rht_github(message: types.Message):
     rht_git = 'https://github.com/RedHazzarTeam-CODEBY-GAMES/'
     await message.reply(f'''{rht_git}
-''', parse_mode='HTML')
+''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=top_cmds, ignore_case=True))
@@ -112,7 +113,7 @@ async def rht_top_teams_ru(message: types.Message):
     nl = '\n'
     await message.reply(f'''🇷🇺🇷🇺🇷🇺
 {nl.join(str(team) for team in top_ru)}
-''', parse_mode='HTML')
+''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(startswith=wiki_cmds, ignore_case=True))
@@ -122,9 +123,9 @@ async def rht_art(message: types.Message):
         w = wikipedia.page(message.text[6:], auto_suggest=True)
         wiki_page = wikipedia.summary(message.text[6:], sentences=4, auto_suggest=True)
         wiki_url = w.url
-        await message.reply(f'{wiki_page}\n{wiki_url}', disable_web_page_preview=True)
+        await message.reply(f'{wiki_page}\n{wiki_url}', disable_web_page_preview=True, reply_markup=await del_msg_btn())
     except wikipedia.exceptions.PageError:
-        await message.reply('Страницы на русском не существует :(')
+        await message.reply('Страницы на русском не существует :(', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=buttons_cmds, ignore_case=True))
@@ -142,12 +143,22 @@ async def url_buttons(message: types.Message):
 async def rht_brief(message: types.Message):
     with open('notes/brief', encoding='UTF-8', newline='') as content:
         brief = content.read()
-    await message.reply(f'''{brief}''', parse_mode='HTML')
+    await message.reply(f'''{brief}''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=ngrok_cmds, ignore_case=True))
 async def rht_ngrok(message: types.Message):
-    await message.reply(ngrok[0], parse_mode='HTML')
+    await message.reply(ngrok[0], parse_mode='HTML', reply_markup=await del_msg_btn())
+
+
+@dp.callback_query_handler(lambda callback_query: callback_query.data == 'delete_message')
+async def delete_message(callback_query: types.CallbackQuery):
+    message = callback_query.message
+    if IsAdmin(message):
+        await bot.delete_message(message.chat.id, message.message_id)
+        await bot.answer_callback_query(callback_query.id)
+    else:
+        await bot.send_message(message.chat.id, "Недостаточно прав для удаления сообщения")
 
 
 @dp.message_handler(Text(equals=commands_cmds, ignore_case=True))
@@ -163,7 +174,7 @@ async def rht_commands(message: types.Message):
 🔝 Top RU: <b>{' : '.join(str(c) for c in top_cmds)}</b>
 📚 Wiki: <b>{' : '.join(str(c) for c in wiki_cmds)}</b> пример: !wiki linux
 ⛓ Ngrok: <b>{' : '.join(str(c) for c in ngrok_cmds)}</b>
-⌨️ Commands: <b>{' : '.join(str(c) for c in commands_cmds)}</b>''', parse_mode='HTML')
+⌨️ Commands: <b>{' : '.join(str(c) for c in commands_cmds)}</b>''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=menu_cmds, ignore_case=True))
@@ -193,7 +204,7 @@ async def results_data(callback: types.CallbackQuery):
 {rht_best[2][5]}
 {rht_best[2][6]}
 {rht_best[2][7]}
-{rht_best[2][8]}''', parse_mode='HTML')
+{rht_best[2][8]}''', parse_mode='HTML', reply_markup=await del_msg_btn())
     await callback.answer()
 
 
@@ -203,14 +214,14 @@ async def info_data(callback: types.CallbackQuery):
 🇷🇺 RU position: <b>{rht_info["rating"]["2023"]["country_place"]}</b>
 🎯 Rating points: <b>{rht_info["rating"]["2023"]["rating_points"]}</b>
 🚩 Team ID: <b>{rht_info["id"]}</b>
-https://ctftime.org/team/186788''', parse_mode='HTML')
+https://ctftime.org/team/186788''', parse_mode='HTML', reply_markup=await del_msg_btn())
     await callback.answer()
 
 
 @dp.callback_query_handler(text="flagbot_data")
 async def flagbot_data(callback: types.CallbackQuery):
     flags_bot = '@rhtflagsbot'
-    await callback.message.answer(f'Flags bot here: {flags_bot}', parse_mode='HTML')
+    await callback.message.answer(f'Flags bot here: {flags_bot}', parse_mode='HTML', reply_markup=await del_msg_btn())
     await callback.answer()
 
 
@@ -218,7 +229,7 @@ async def flagbot_data(callback: types.CallbackQuery):
 async def todo_data(callback: types.CallbackQuery):
     with open('notes/todo', encoding='UTF-8', newline='') as todo:
         todo = todo.read()
-    await callback.message.answer(todo, parse_mode='HTML')
+    await callback.message.answer(todo, parse_mode='HTML', reply_markup=await del_msg_btn())
     await callback.answer()
 
 
@@ -226,7 +237,7 @@ async def todo_data(callback: types.CallbackQuery):
 async def brief_data(callback: types.CallbackQuery):
     with open('notes/brief', encoding='UTF-8', newline='') as content:
         brief = content.read()
-    await callback.message.answer(f'''{brief}''', parse_mode='HTML')
+    await callback.message.answer(f'''{brief}''', parse_mode='HTML', reply_markup=await del_msg_btn())
     await callback.answer()
 
 
@@ -234,7 +245,7 @@ async def brief_data(callback: types.CallbackQuery):
 async def next_event_data(callback: types.CallbackQuery):
     with open('notes/next', encoding='UTF-8', newline='') as content:
         content = content.read()
-    await callback.message.answer(content, parse_mode='HTML')
+    await callback.message.answer(content, parse_mode='HTML', reply_markup=await del_msg_btn())
     await callback.answer()
 
 
@@ -243,7 +254,7 @@ async def top_ru_data(callback: types.CallbackQuery):
     nl = '\n'
     await callback.message.answer(f'''🇷🇺🇷🇺🇷🇺
 {nl.join(str(team) for team in top_ru)}
-''', parse_mode='HTML')
+''', parse_mode='HTML', reply_markup=await del_msg_btn())
     await callback.answer()
 
 
@@ -254,7 +265,7 @@ async def links_data(callback: types.CallbackQuery):
 🃏 <a href="https://ctftime.org/team/186788">Ctftime</a>
 🏁 <a href="tg://resolve?domain=rhtflagsbot">Flagbot</a>
 ☎️ <a href="https://discord.gg/V6Ba8qf2">Discord</a>
-''', parse_mode='HTML', disable_web_page_preview=True)
+''', parse_mode='HTML', disable_web_page_preview=True, reply_markup=await del_msg_btn())
     await callback.answer()
 
 
@@ -262,7 +273,7 @@ async def links_data(callback: types.CallbackQuery):
 async def bot_send_sticker(message: types.Message):
     photo = InputFile("last.png")
     # await bot.send_sticker(chat_id=message.chat.id, sticker=r"CAACAgIAAxkBAAEJxCVkurxNbi3yUph4ZkiSoRGWn_BmJAACSCgAAtDiSUtQy_QmRSmjai8E")
-    await message.answer_photo(photo, caption='Последний результат')
+    await message.answer_photo(photo, caption='Последний результат', reply_markup=await del_msg_btn())
 
 
 @dp.errors_handler()

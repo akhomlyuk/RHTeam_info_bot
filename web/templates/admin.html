@@ -20,7 +20,7 @@
         <h5 class="card-title">{{ user.name }}
 
             {% if user.isadmin %}
-             <i title="Администратор"  class="bi bi-person-fill-gear text-primary"></i>
+             <i title="Администратор"  class="bi bi-person-gear text-primary"></i>
         {% endif %}
 
           {% if user.user_group != 'Admins' and user.id != 1 %}

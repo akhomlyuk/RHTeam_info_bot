@@ -1,4 +1,5 @@
 import logging
+import asyncio
 from contextlib import suppress
 from aiogram import Bot, Dispatcher, types, executor
 from aiogram.dispatcher.filters import Text
@@ -218,6 +219,11 @@ async def on_startup(dp):
     logging.info('RHTeam info bot starting...')
 
 
+async def main():
+    await executor.start_polling(dp, on_startup=on_startup)
+
+
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, filename='logs/bot.log', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    executor.start_polling(dp, on_startup=on_startup)
+    # executor.start_polling(dp, on_startup=on_startup)
+    asyncio.run(main())

@@ -1,5 +1,6 @@
 from functions import rht_best_res, rht_info, top_teams_ru
 from config import *
+
 rht_info = rht_info()
 rht_best = rht_best_res()
 top_ru = top_teams_ru()

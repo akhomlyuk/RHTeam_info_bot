@@ -1,6 +1,9 @@
 from aiogram.dispatcher.filters import BoundFilter
 from aiogram import types
-from main import bot
+from aiogram import Bot
+from config import bot_token
+
+bot = Bot(token=bot_token)
 
 
 class IsAdmin(BoundFilter):

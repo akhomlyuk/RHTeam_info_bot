@@ -146,17 +146,7 @@ async def rht_commands(message: types.Message):
 
 @dp.callback_query_handler(text="results_data")
 async def results_data(callback: types.CallbackQuery):
-    await callback.message.answer(
-        f'''Best 9 results: {round(rht_best[1], 3)} + CODEBY org(45.82) = <b>{rht_info["rating"]["2023"]["rating_points"]}</b>\n
-{rht_best[2][0]}
-{rht_best[2][1]}
-{rht_best[2][2]}
-{rht_best[2][3]}
-{rht_best[2][4]}
-{rht_best[2][5]}
-{rht_best[2][6]}
-{rht_best[2][7]}
-{rht_best[2][8]}''', parse_mode='HTML', reply_markup=await del_msg_btn())
+    await callback.message.answer(top10_results, parse_mode='HTML', reply_markup=await del_msg_btn())
     await callback.answer()
 
 
@@ -233,13 +223,5 @@ async def on_startup(dp):
     logging.info('RHTeam info bot starting...')
 
 
-async def on_shutdown(dp):
-    logging.warning("Shutting down..")
-    await bot.delete_webhook()
-    await dp.storage.close()
-    await dp.storage.wait_closed()
-    logging.warning("System shutdown!")
-
-
 if __name__ == '__main__':
-    executor.start_polling(dp, on_startup=on_startup, on_shutdown=on_shutdown)
+    executor.start_polling(dp, on_startup=on_startup)

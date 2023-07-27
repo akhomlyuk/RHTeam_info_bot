@@ -246,7 +246,7 @@ async def top_ru_data(callback: types.CallbackQuery):
 
 @dp.callback_query_handler(text="links_data")
 async def links_data(callback: types.CallbackQuery):
-    await callback.message.answer(f'''Ссылки:
+    await callback.message.answer(f'''🔖 Ссылки:
 ⚙️ <a href="https://github.com/RedHazzarTeam-CODEBY-GAMES/">Github</a>
 🃏 <a href="https://ctftime.org/team/186788">Ctftime</a>
 🏁 <a href="tg://resolve?domain=rhtflagsbot">Flagbot</a>

@@ -2,7 +2,7 @@ import logging
 from contextlib import suppress
 from aiogram import Bot, Dispatcher, types, executor
 from aiogram.dispatcher.filters import Text, BoundFilter
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, InputFile
+from aiogram.types import Message, InputFile
 from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
 import wikipedia
 from keyboards import del_msg_btn, url_buttons, menu_buttons
@@ -31,6 +31,22 @@ class IsAdmin(BoundFilter):
     async def check(self, message: types.Message):
         member = await bot.get_chat_member(message.chat.id, message.from_user.id)
         return member.is_chat_admin()
+
+
+@dp.callback_query_handler(lambda callback_query: callback_query.data == 'delete_message')
+async def delete_message(callback_query: types.CallbackQuery):
+    message = callback_query.message
+    if IsAdmin(message):
+        await bot.delete_message(message.chat.id, message.message_id)
+        await bot.answer_callback_query(callback_query.id)
+    else:
+        await bot.send_message(message.chat.id, "Недостаточно прав для удаления сообщения")
+
+
+# Вызов кнопок меню, кнопки в keyboards
+@dp.message_handler(Text(equals=menu_cmds, ignore_case=True))
+async def handle_menu_buttons(message: types.Message):
+    await menu_buttons(message)
 
 
 @dp.message_handler(Text(equals=del_cmds, ignore_case=True))
@@ -146,25 +162,11 @@ async def rht_ngrok(message: types.Message):
 
 
 # Вызов inline кнопки удалить под сообщениями бота, кнопки в keyboards
-@dp.callback_query_handler(lambda callback_query: callback_query.data == 'delete_message')
-async def delete_message(callback_query: types.CallbackQuery):
-    message = callback_query.message
-    if IsAdmin(message):
-        await bot.delete_message(message.chat.id, message.message_id)
-        await bot.answer_callback_query(callback_query.id)
-    else:
-        await bot.send_message(message.chat.id, "Недостаточно прав для удаления сообщения")
 
 
 @dp.message_handler(Text(equals=commands_cmds, ignore_case=True))
 async def rht_commands(message: types.Message):
     await message.reply(commands, parse_mode='HTML', reply_markup=await del_msg_btn())
-
-
-# Вызов кнопок меню, кнопки в keyboards
-@dp.message_handler(Text(equals=menu_cmds, ignore_case=True))
-async def handle_menu_buttons(message: types.Message):
-    await menu_buttons(message)
 
 
 @dp.callback_query_handler(text="results_data")

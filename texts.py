@@ -1,3 +1,9 @@
+from functions import rht_best_res, rht_info, top_teams_ru
+from config import *
+rht_info = rht_info()
+rht_best = rht_best_res()
+top_ru = top_teams_ru()
+
 top10_results = f'''Best 9 results: {round(rht_best[1], 3)} + CODEBY org(45.82) = <b>{rht_info["rating"]["2023"]["rating_points"]}</b>\n
 {rht_best[2][0]}
 {rht_best[2][1]}

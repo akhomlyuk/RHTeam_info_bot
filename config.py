@@ -1,10 +1,5 @@
 import os
-from functions import rht_best_res, rht_info, top_teams_ru
 from icecream import ic
-
-rht_info = rht_info()
-rht_best = rht_best_res()
-top_ru = top_teams_ru()
 
 bot_token = os.getenv('rht_info_bot_token')
 results_cmds = ['!results', '!stats', '!best']

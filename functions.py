@@ -10,7 +10,7 @@ rht_results = "https://ctftime.org/team/186788"
 top_teams_ru_url = 'https://ctftime.org/stats/RU'
 
 
-async def rht_best_res() -> list:
+def rht_best_res() -> list:
     with requests.Session() as s:
         header = {
             'Host': 'ctftime.org',
@@ -50,7 +50,7 @@ async def rht_best_res() -> list:
         return [sorted_data[:9], total_rating, results_for_menu]
 
 
-async def rht_info() -> dict:
+def rht_info() -> dict:
     with requests.Session() as s:
         header = {
             'Host': 'ctftime.org',
@@ -66,7 +66,7 @@ async def rht_info() -> dict:
     return rht
 
 
-async def results_from_ctftime() -> dict:
+def results_from_ctftime() -> dict:
     with requests.Session() as s:
         header = {
             'Host': 'ctftime.org',
@@ -81,7 +81,7 @@ async def results_from_ctftime() -> dict:
     return b
 
 
-async def event_information(event_id: int) -> dict:
+def event_information(event_id: int) -> dict:
     with requests.Session() as s:
         header = {
             'Host': 'ctftime.org',
@@ -96,7 +96,7 @@ async def event_information(event_id: int) -> dict:
     return event_info
 
 
-async def top_teams_ru() -> list:
+def top_teams_ru() -> list:
     with requests.Session() as s:
         header = {
             'Host': 'ctftime.org',

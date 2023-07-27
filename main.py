@@ -1,7 +1,7 @@
 import logging
 import asyncio
 from contextlib import suppress
-from aiogram import Bot, Dispatcher, types, executor
+from aiogram import Bot, Dispatcher, types
 from aiogram.dispatcher.filters import Text
 from aiogram.types import Message, InputFile
 from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
@@ -26,30 +26,28 @@ top_ru = top_teams_ru()
 @dp.callback_query_handler(lambda callback_query: callback_query.data == 'delete_message')
 async def delete_message(callback_query: types.CallbackQuery):
     message = callback_query.message
-    if IsAdmin(message):
-        await bot.delete_message(message.chat.id, message.message_id)
-        await bot.answer_callback_query(callback_query.id)
-    else:
-        await bot.send_message(message.chat.id, "Недостаточно прав для удаления сообщения")
-
-
-# Вызов кнопок меню, кнопки в keyboards
-@dp.message_handler(Text(equals=menu_cmds, ignore_case=True))
-async def handle_menu_buttons(message: types.Message):
-    await menu_buttons(message)
+    with suppress(MessageCantBeDeleted, MessageToDeleteNotFound):
+        if IsAdmin(message):
+            await bot.delete_message(message.chat.id, message.message_id)
+            await bot.answer_callback_query(callback_query.id)
+        else:
+            await bot.send_message(message.chat.id, "Недостаточно прав для удаления сообщения")
 
 
 @dp.message_handler(Text(equals=del_cmds, ignore_case=True))
 async def delete_messsage(message: types.Message):
-    # try:
     with suppress(MessageCantBeDeleted, MessageToDeleteNotFound):
         if IsAdmin(message):
             await bot.delete_message(message.chat.id, message.reply_to_message.message_id)
             await message.delete()
         else:
             await bot.send_message(message.chat.id, f"Не достаточно прав для удаление сообщения")
-    # except MessageCantBeDeleted:
-    #     await bot.send_message(message.chat.id, f"Не достаточно прав на удаление сообщения")
+
+
+# Вызов кнопок меню, кнопки в keyboards
+@dp.message_handler(Text(equals=menu_cmds, ignore_case=True))
+async def handle_menu_buttons(message: types.Message):
+    await menu_buttons(message)
 
 
 @dp.message_handler(content_types=['new_chat_members'])

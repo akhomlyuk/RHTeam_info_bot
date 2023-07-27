@@ -158,18 +158,7 @@ async def delete_message(callback_query: types.CallbackQuery):
 
 @dp.message_handler(Text(equals=commands_cmds, ignore_case=True))
 async def rht_commands(message: types.Message):
-    await message.reply(f'''📜 Information: <b>{' : '.join(str(c) for c in info_cmds)}</b>
-📈 Results: <b>{' : '.join(str(c) for c in results_cmds)}</b>
-🔖 Menu: <b>{' : '.join(str(c) for c in menu_cmds)}</b>
-📝 Список дел: <b>{' : '.join(str(c) for c in todo_cmds)}</b>
-🏁 Flag bot: <b>{' : '.join(str(c) for c in flag_cmds)}</b>
-⚙️ RHT git: <b>{' : '.join(str(c) for c in git_cmds)}</b>
-📌 URLs: <b>{' : '.join(str(c) for c in buttons_cmds)}</b>
-👨‍🚀 Brief: <b>{' : '.join(str(c) for c in brief_cmds)}</b>
-🔝 Top RU: <b>{' : '.join(str(c) for c in top_cmds)}</b>
-📚 Wiki: <b>{' : '.join(str(c) for c in wiki_cmds)}</b> пример: !wiki linux
-⛓ Ngrok: <b>{' : '.join(str(c) for c in ngrok_cmds)}</b>
-⌨️ Commands: <b>{' : '.join(str(c) for c in commands_cmds)}</b>''', parse_mode='HTML', reply_markup=await del_msg_btn())
+    await message.reply(commands, parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 # Вызов кнопок меню, кнопки в keyboards
@@ -246,12 +235,7 @@ async def top_ru_data(callback: types.CallbackQuery):
 
 @dp.callback_query_handler(text="links_data")
 async def links_data(callback: types.CallbackQuery):
-    await callback.message.answer(f'''🔖 Ссылки:
-⚙️ <a href="https://github.com/RedHazzarTeam-CODEBY-GAMES/">Github</a>
-🃏 <a href="https://ctftime.org/team/186788">Ctftime</a>
-🏁 <a href="tg://resolve?domain=rhtflagsbot">Flagbot</a>
-☎️ <a href="https://discord.gg/V6Ba8qf2">Discord</a>
-''', parse_mode='HTML', disable_web_page_preview=True, reply_markup=await del_msg_btn())
+    await callback.message.answer(links, parse_mode='HTML', disable_web_page_preview=True, reply_markup=await del_msg_btn())
     await callback.answer()
 
 

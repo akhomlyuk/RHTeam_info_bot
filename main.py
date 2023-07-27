@@ -1,13 +1,14 @@
 import logging
 from contextlib import suppress
 from aiogram import Bot, Dispatcher, types, executor
-from aiogram.dispatcher.filters import Text, BoundFilter
+from aiogram.dispatcher.filters import Text
 from aiogram.types import Message, InputFile
 from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
 import wikipedia
 from keyboards import del_msg_btn, url_buttons, menu_buttons
 from config import *
 from functions import rht_best_res, rht_info, top_teams_ru
+from models import IsAdmin
 
 os.makedirs('logs', exist_ok=True)
 os.makedirs('notes', exist_ok=True)
@@ -19,17 +20,6 @@ dp = Dispatcher(bot)
 rht_info = rht_info()
 rht_best = rht_best_res()
 top_ru = top_teams_ru()
-
-
-class IsAdmin(BoundFilter):
-    key = 'is_admin'
-
-    def __init__(self, is_admin):
-        self.is_admin = is_admin
-
-    async def check(self, message: types.Message):
-        member = await bot.get_chat_member(message.chat.id, message.from_user.id)
-        return member.is_chat_admin()
 
 
 # Вызов inline кнопки удалить под сообщениями бота, кнопки в keyboards
@@ -81,7 +71,7 @@ async def rht_information(message: types.Message):
 @dp.message_handler(Text(equals=flag_cmds, ignore_case=True))
 async def rht_flagbot(message: types.Message):
     flags_bot = '@rhtflagsbot'
-    await message.reply(f'Flags bot here: {flags_bot}', parse_mode='HTML', reply_markup=types.ReplyKeyboardRemove())
+    await message.reply(f'Flags bot here: {flags_bot}', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=user_id_cmds, ignore_case=True))

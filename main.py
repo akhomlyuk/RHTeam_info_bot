@@ -7,6 +7,7 @@ from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFou
 import wikipedia
 from keyboards import del_msg_btn, url_buttons, menu_buttons
 from config import *
+from texts import *
 from functions import rht_best_res, rht_info, top_teams_ru
 from models import IsAdmin
 

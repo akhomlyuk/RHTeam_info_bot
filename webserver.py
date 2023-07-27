@@ -1,6 +1,4 @@
 from flask import Flask, render_template, request
-from config import *
-from brief import *
 from icecream import ic
 import logging
 

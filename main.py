@@ -6,7 +6,6 @@ from aiogram.types import Message, InputFile
 from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
 import wikipedia
 from keyboards import del_msg_btn, url_buttons, menu_buttons
-from config import *
 from texts import *
 from functions import rht_best_res, rht_info, top_teams_ru
 from models import IsAdmin
@@ -152,11 +151,7 @@ async def results_data(callback: types.CallbackQuery):
 
 @dp.callback_query_handler(text="info_data")
 async def info_data(callback: types.CallbackQuery):
-    await callback.message.answer(f'''🌍 Worldwide position: <b>{rht_info["rating"]["2023"]["rating_place"]}</b>
-🇷🇺 RU position: <b>{rht_info["rating"]["2023"]["country_place"]}</b>
-🎯 Rating points: <b>{rht_info["rating"]["2023"]["rating_points"]}</b>
-🚩 Team ID: <b>{rht_info["id"]}</b>
-https://ctftime.org/team/186788''', parse_mode='HTML', reply_markup=await del_msg_btn())
+    await callback.message.answer(rht_summary, parse_mode='HTML', reply_markup=await del_msg_btn())
     await callback.answer()
 
 

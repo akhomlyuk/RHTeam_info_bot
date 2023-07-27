@@ -14,7 +14,7 @@ def admin_required(f):
     def decorated_function(*args, **kwargs):
         if not current_user.is_authenticated:
             abort(403)
-        elif current_user.group != 'admins' and current_user.group != 'Admins':
+        elif current_user.user_group != 'admins' and current_user.user_group != 'Admins':
             abort(403)
         return f(*args, **kwargs)
     return decorated_function
@@ -60,7 +60,7 @@ def signup_post():
         flash('Неверный инвайт!')
         return redirect(url_for('auth.signup'))
 
-    new_user = ic(User(name=name, password=generate_password_hash(password, method='scrypt'), group='RHTeam', active=True))
+    new_user = ic(User(name=name, password=generate_password_hash(password, method='scrypt'), user_group='RHTeam', active=True))
     db.session.add(new_user)
     db.session.commit()
 

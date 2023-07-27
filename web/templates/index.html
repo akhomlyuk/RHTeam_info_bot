@@ -5,7 +5,7 @@
 {% if current_user.is_authenticated %}
 
 
-    {% if current_user.group == 'admins' or current_user.group == 'Admins' %}
+    {% if current_user.user_group == 'admins' or current_user.user_group == 'Admins' %}
         <h3>Следующее событие:</h3>
     <form action="/nextevent" method="post">
 
@@ -15,13 +15,13 @@
             </div>
     </form>
 
-        {% elif current_user.group == 'RHTeam' %}
+        {% elif current_user.user_group == 'RHTeam' %}
          <div class="col my-2">
                 <img src="static/last.png" class="img-fluid">
                 {% endif %}
         </div>
 
-        {% if current_user.group == 'admins' or current_user.group == 'Admins' %}
+        {% if current_user.user_group == 'admins' or current_user.user_group == 'Admins' %}
         <h3>Список дел:</h3>
           <form action="/todolist" method="post">
 

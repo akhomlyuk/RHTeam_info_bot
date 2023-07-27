@@ -10,7 +10,7 @@
 <a href="{{ url_for('auth.login') }}">Войти</a> или <a href="{{ url_for('auth.signup') }}">зарегистрироваться</a>
 {% endif %}
 
-  {% if current_user.group == 'admins' %}
+  {% if current_user.user_group == 'Admins' %}
     <div class="container">
 
         <h3>Брифинг:</h3>

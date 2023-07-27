@@ -9,5 +9,6 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
     email = db.Column(db.String(100), unique=True)
     active = db.Column(db.Boolean())
-    group = db.Column(db.String(100))
+    user_group = db.Column(db.String(100))
     created_on = db.Column(db.DateTime(), default=datetime.now())
+    isadmin = db.Column(db.Boolean())

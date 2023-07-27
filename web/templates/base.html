@@ -24,7 +24,7 @@
         <li class="nav-item">
        <a href="/" class="mx-1 my-1 btn btn-outline-primary" role="button">Главная</a>
         </li>
-          {% if current_user.group == 'admins' %}
+          {% if current_user.user_group == 'admins' or current_user.user_group == 'Admins' %}
           <li>
         <a href="/adm" class="mx-1 my-1 btn btn-outline-primary" role="button">
             Админка

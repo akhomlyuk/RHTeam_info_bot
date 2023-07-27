@@ -13,34 +13,39 @@
 <div class="row row-cols-1 row-cols-md-2 g-2">
 
         {% for user in users %}
-
   <div class="col">
     <div class="card text-bg-light">
       <div class="card-body">
 
         <h5 class="card-title">{{ user.name }}
-          {% if user.group != 'Admins' and user.id != 1 %}
+
+            {% if user.isadmin %}
+             <i title="Администратор"  class="bi bi-person-fill-gear text-dark"></i>
+        {% endif %}
+
+          {% if user.user_group != 'Admins' and user.id != 1 %}
          <a class="text-decoration-none" href="{{ url_for('main.set_admins_group_route', user_id=user.id) }}">
             <i title="Дать админку" class="bi bi-person-add" style="color: green;"></i>
          </a>
         {% endif %}
 
-            {% if user.group == 'Admins' and user.id != 1 %}
+            {% if user.user_group == 'Admins' and user.id != 1 %}
          <a class="text-decoration-none" href="{{ url_for('main.set_users_group_route', user_id=user.id) }}">
             <i title="Поставить в юзеры" class="bi bi-person-dash" style="color: red;"></i>
          </a>
         {% endif %}
 
-            {% if user.group != 'Admins' and user.group != 'admins' %}
+            {% if user.user_group != 'Admins' and user.user_group != 'admins' %}
          <a class="text-decoration-none" href="{{ url_for('main.delete_user_route', user_id=user.id) }}">
              <i title="Удалить юзера"  class="bi bi-trash2 text-danger"></i>
          </a>
 
         {% endif %}
 
+
         </h5>
 
-          <p class="card-text">ID: <b>{{ user.id }}</b>  Группа: <b>{{ user.group }}</b> </p>
+          <p class="card-text">ID: <b>{{ user.id }}</b>  Группа: <b>{{ user.user_group }}</b> </p>
       </div>
     </div>
   </div>

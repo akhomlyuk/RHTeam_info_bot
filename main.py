@@ -238,6 +238,15 @@ async def bot_send_sticker(message: types.Message):
     await message.answer_sticker(random.choice(pandas_rng), reply_markup=await del_msg_btn())
 
 
+@dp.message_handler(content_types=["sticker"])
+async def bot_get_sticker_info(message: types.Message):
+    sticker_id = message.sticker.file_id
+    file_info = await bot.get_file(sticker_id)
+    await message.answer(f'<b>File id:</b> <code>{file_info.file_id}</code>', parse_mode='HTML')
+    await message.answer(f'<b>File size:</b> {file_info.file_size // 1024} Kb', parse_mode='HTML')
+    await message.answer(f'<b>File unique id:</b> <code>{file_info.file_unique_id}</code>', parse_mode='HTML')
+
+
 @dp.errors_handler()
 async def errors_handler(update: types.Update, exception: Exception):
     logging.error(f'Ошибка при обработке запроса {update}: {exception}')

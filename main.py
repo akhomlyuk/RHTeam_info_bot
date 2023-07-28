@@ -207,6 +207,14 @@ async def links_data(callback: types.CallbackQuery):
     await callback.answer()
 
 
+@dp.callback_query_handler(text="blacklist_data")
+async def blacklist_data(callback: types.CallbackQuery):
+    with open('notes/blacklist', encoding='UTF-8', newline='') as content:
+        bl = content.read()
+    await callback.message.answer(bl, parse_mode='HTML', disable_web_page_preview=True, reply_markup=await del_msg_btn())
+    await callback.answer()
+
+
 @dp.message_handler(Text(equals=send_photo_cmds, ignore_case=True))
 async def bot_send_sticker(message: types.Message):
     photo = InputFile("last.png")

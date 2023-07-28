@@ -223,7 +223,7 @@ async def bot_send_sticker(message: types.Message):
 
     # await bot.send_sticker(chat_id=message.chat.id, sticker=r"CAACAgIAAxkBAAEJxCVkurxNbi3yUph4ZkiSoRGWn_BmJAACSCgAAtDiSUtQy_QmRSmjai8E")
     # await message.answer_photo(photo, caption='Последний результат', reply_markup=await del_msg_btn())
-    await bot.send_media_group(message.chat.id, [InputMediaPhoto(cats)])
+    await bot.send_video(message.chat.id, cats)
 
 
 @dp.errors_handler()

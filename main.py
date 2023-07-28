@@ -227,6 +227,11 @@ async def bot_send_sticker(message: types.Message):
     await message.answer_sticker('CAACAgIAAxkBAAEJ111kw-91FqVfDb307irgHaTtl8f1RgACDBUAAp6r-Uj_wGLs34VHvy8E')
 
 
+@dp.message_handler(Text(equals=send_pzd_cmds, ignore_case=True))
+async def bot_send_sticker(message: types.Message):
+    await message.answer_sticker('CAACAgIAAxkBAAEJ165kxBzP8mMvN2i_bbAuAgiDt8FIcgACuwkAAgi3GQKen_39zWb2dy8E')
+
+
 @dp.errors_handler()
 async def errors_handler(update: types.Update, exception: Exception):
     logging.error(f'Ошибка при обработке запроса {update}: {exception}')

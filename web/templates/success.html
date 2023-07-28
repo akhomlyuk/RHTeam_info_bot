@@ -8,10 +8,10 @@
                     Файл успешно сохранен!
                 </div>
                  <div class="card border-dark mb-3">
-                  <div class="card-header">Добро пожаловать, {{ name }}!</div>
+                  <div class="card-header">Добро пожаловать, {{ current_user.name }}!</div>
                   <div class="card-body text-dark">
                     <h5 class="card-title">Инфо</h5>
-                     <p class="card-text">{{ next_event }} {{ todo_list }} {{ brief }}</p>
+                     <p class="card-text">{{ next_event }} {{ todo_list }} {{ brief }} {{ blacklist }}</p>
                   </div>
                 </div>
             </div>

@@ -68,7 +68,7 @@ def save_nextevent():
     updated_content = request.form['next_event']
     with open(next_event_path, 'w', encoding='UTF-8', newline='') as file:
         file.write(updated_content)
-    return render_template('success.html', next_event=updated_content)
+    return render_template('success.html', next_event=updated_content, name=current_user.name)
 
 
 @main.route('/saveblacklist', methods=['POST'])
@@ -77,7 +77,7 @@ def save_blacklist():
     updated_content = request.form['blacklist']
     with open(blacklist_path, 'w', encoding='UTF-8', newline='') as file:
         file.write(updated_content)
-    return render_template('success.html', blacklist=updated_content)
+    return render_template('success.html', blacklist=updated_content, name=current_user.name)
 
 
 @main.route('/savebrief', methods=['POST'])
@@ -86,7 +86,7 @@ def save_brief():
     updated_content = request.form['brief']
     with open(brief_path, 'w', encoding='UTF-8', newline='') as file:
         file.write(updated_content)
-    return render_template('success.html', brief=updated_content)
+    return render_template('success.html', brief=updated_content, name=current_user.name)
 
 
 @main.route('/todolist', methods=['POST'])
@@ -95,7 +95,7 @@ def save_todolist():
     updated_content = request.form['todo_list']
     with open(todo_path, 'w', encoding='UTF-8', newline='') as file:
         file.write(updated_content)
-    return render_template('success.html', todo_list=updated_content)
+    return render_template('success.html', todo_list=updated_content, name=current_user.name)
 
 
 @main.route('/settings')

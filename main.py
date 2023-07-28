@@ -216,7 +216,7 @@ async def blacklist_data(callback: types.CallbackQuery):
 
 
 @dp.message_handler(Text(equals=send_photo_cmds, ignore_case=True))
-async def bot_send_sticker(message: types.Message):
+async def bot_send_picture(message: types.Message):
     photo = InputFile("last.png")
     # await bot.send_sticker(chat_id=message.chat.id, sticker=r"CAACAgIAAxkBAAEJxCVkurxNbi3yUph4ZkiSoRGWn_BmJAACSCgAAtDiSUtQy_QmRSmjai8E")
     await message.answer_photo(photo, caption='Последний результат', reply_markup=await del_msg_btn())
@@ -224,8 +224,7 @@ async def bot_send_sticker(message: types.Message):
 
 @dp.message_handler(Text(equals=send_gif_cmds, ignore_case=True))
 async def bot_send_sticker(message: types.Message):
-    cats = InputFile("web/static/cats.gif")
-    await message.answer_animation(cats, reply_markup=await del_msg_btn())
+    await message.answer_sticker('CAACAgIAAxkBAAEJ111kw-91FqVfDb307irgHaTtl8f1RgACDBUAAp6r-Uj_wGLs34VHvy8E')
 
 
 @dp.errors_handler()

@@ -3,7 +3,7 @@ import asyncio
 from contextlib import suppress
 from aiogram import Bot, Dispatcher, types
 from aiogram.dispatcher.filters import Text
-from aiogram.types import Message, InputFile
+from aiogram.types import Message, InputFile, InputMediaPhoto
 from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
 import wikipedia
 from keyboards import del_msg_btn, url_buttons, menu_buttons
@@ -223,7 +223,7 @@ async def bot_send_sticker(message: types.Message):
 
     # await bot.send_sticker(chat_id=message.chat.id, sticker=r"CAACAgIAAxkBAAEJxCVkurxNbi3yUph4ZkiSoRGWn_BmJAACSCgAAtDiSUtQy_QmRSmjai8E")
     # await message.answer_photo(photo, caption='Последний результат', reply_markup=await del_msg_btn())
-    await bot.send_video(message.chat.id, cats)
+    await bot.send_media_group(message.chat.id, [InputMediaPhoto(cats)])
 
 
 @dp.errors_handler()

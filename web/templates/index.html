@@ -4,8 +4,9 @@
 
 {% if current_user.is_authenticated %}
 
-
+<div class="row row-cols-1 row-cols-md-2 g-2">
     {% if current_user.user_group == 'admins' or current_user.user_group == 'Admins' %}
+      <div class="col">
         <h3>Следующее событие:</h3>
     <form action="/nextevent" method="post">
 
@@ -14,14 +15,9 @@
         <button type="submit" value="Сохранить" class="mt-2 mb-2 btn btn-outline-primary">Сохранить</button>
             </div>
     </form>
+      </div>
 
-        {% elif current_user.user_group == 'RHTeam' %}
-         <div class="col my-2">
-                <img src="static/last.png" class="img-fluid">
-                {% endif %}
-        </div>
-
-        {% if current_user.user_group == 'admins' or current_user.user_group == 'Admins' %}
+      <div class="col">
         <h3>Список дел:</h3>
           <form action="/todolist" method="post">
 
@@ -33,9 +29,30 @@
 
 
           </form>
+      </div>
 
-        {% endif %}
+    <div class="col">
+        <h3>Blacklist:</h3>
+          <form action="/saveblacklist" method="post">
 
+            <textarea name="blacklist" class="form-control" id="blacklist_area" rows="10">{{ blacklist }}</textarea>
+
+            <div class="col-sm-3 my-1">
+            <button type="submit" value="Сохранить" class="mt-2 mb-2 btn btn-outline-primary">Сохранить</button>
+            </div>
+
+
+          </form>
+      </div>
+
+
+        {% elif current_user.user_group == 'RHTeam' %}
+         <div class="col my-2">
+                <img src="static/last.png" class="img-fluid">
+                {% endif %}
+        </div>
+
+    </div>
 {% endif %}
 
 {% if not current_user.is_authenticated %}

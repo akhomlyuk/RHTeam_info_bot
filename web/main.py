@@ -8,6 +8,7 @@ from .auth import admin_required
 main = Blueprint('main', __name__)
 
 brief_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'notes', 'brief'))
+blacklist_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'notes', 'blacklist'))
 next_event_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'notes', 'next'))
 todo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'notes', 'todo'))
 log_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'logs', 'web.log'))
@@ -25,7 +26,9 @@ def index():
         content = file.read()
     with open(todo_path, 'r', encoding='UTF-8', newline='') as todo:
         todo = todo.read()
-    return render_template('index.html', next_event=content, todo_list=todo)
+    with open(blacklist_path, 'r', encoding='UTF-8', newline='') as blacklist:
+        blacklist = blacklist.read()
+    return render_template('index.html', blacklist=blacklist, next_event=content, todo_list=todo)
 
 
 @main.route('/adm')
@@ -66,6 +69,15 @@ def save_nextevent():
     with open(next_event_path, 'w', encoding='UTF-8', newline='') as file:
         file.write(updated_content)
     return render_template('success.html', next_event=updated_content)
+
+
+@main.route('/saveblacklist', methods=['POST'])
+@admin_required
+def save_blacklist():
+    updated_content = request.form['blacklist']
+    with open(blacklist_path, 'w', encoding='UTF-8', newline='') as file:
+        file.write(updated_content)
+    return render_template('success.html', blacklist=updated_content)
 
 
 @main.route('/savebrief', methods=['POST'])

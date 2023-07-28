@@ -72,6 +72,13 @@ async def rht_flagbot(message: types.Message):
     await message.reply(f'Flags bot here: {flags_bot}', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
+@dp.message_handler(Text(equals=blacklist_cmds, ignore_case=True))
+async def rht_get_blacklist(message: types.Message):
+    with open('notes/blacklist', encoding='UTF-8', newline='') as content:
+        content = content.read()
+    await message.reply(f'''{content}''', parse_mode='HTML', reply_markup=await del_msg_btn())
+
+
 @dp.message_handler(Text(equals=user_id_cmds, ignore_case=True))
 async def rht_get_userid(message: types.Message):
     user_id = message.from_user.id

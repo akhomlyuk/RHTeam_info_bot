@@ -218,8 +218,12 @@ async def blacklist_data(callback: types.CallbackQuery):
 @dp.message_handler(Text(equals=send_photo_cmds, ignore_case=True))
 async def bot_send_sticker(message: types.Message):
     photo = InputFile("last.png")
+    cats = InputFile("static/sticker.webm")
+
+
     # await bot.send_sticker(chat_id=message.chat.id, sticker=r"CAACAgIAAxkBAAEJxCVkurxNbi3yUph4ZkiSoRGWn_BmJAACSCgAAtDiSUtQy_QmRSmjai8E")
-    await message.answer_photo(photo, caption='Последний результат', reply_markup=await del_msg_btn())
+    # await message.answer_photo(photo, caption='Последний результат', reply_markup=await del_msg_btn())
+    await bot.send_media_group(message.chat.id, [cats])
 
 
 @dp.errors_handler()

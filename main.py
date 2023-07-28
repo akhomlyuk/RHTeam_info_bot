@@ -3,7 +3,8 @@ import asyncio
 from contextlib import suppress
 from aiogram import Bot, Dispatcher, types
 from aiogram.dispatcher.filters import Text
-from aiogram.types import Message, InputFile, InputMediaVideo
+from aiogram.types import Message, InputFile
+import random
 from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
 import wikipedia
 from keyboards import del_msg_btn, url_buttons, menu_buttons
@@ -230,6 +231,11 @@ async def bot_send_sticker(message: types.Message):
 @dp.message_handler(Text(equals=send_pzd_cmds, ignore_case=True))
 async def bot_send_sticker(message: types.Message):
     await message.answer_sticker('CAACAgIAAxkBAAEJ165kxBzP8mMvN2i_bbAuAgiDt8FIcgACuwkAAgi3GQKen_39zWb2dy8E')
+
+
+@dp.message_handler(Text(equals=pandas_rng_cmds, ignore_case=True))
+async def bot_send_sticker(message: types.Message):
+    await message.answer_sticker(random.choice(pandas_rng))
 
 
 @dp.errors_handler()

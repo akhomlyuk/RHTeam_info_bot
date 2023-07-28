@@ -217,7 +217,7 @@ async def blacklist_data(callback: types.CallbackQuery):
 
 @dp.message_handler(Text(equals=send_photo_cmds, ignore_case=True))
 async def bot_send_sticker(message: types.Message):
-    photo = InputFile("last.png")
+    # photo = InputFile("last.png")
     cats = InputFile("static/sticker.webm")
 
 

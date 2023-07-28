@@ -219,8 +219,8 @@ async def blacklist_data(callback: types.CallbackQuery):
 async def bot_send_sticker(message: types.Message):
     # photo = InputFile("last.png")
     cats = InputFile("web/static/sticker.webm")
-
-
+    m = await message.answer_video(cats)
+    ic(m)
     # await bot.send_sticker(chat_id=message.chat.id, sticker=r"CAACAgIAAxkBAAEJxCVkurxNbi3yUph4ZkiSoRGWn_BmJAACSCgAAtDiSUtQy_QmRSmjai8E")
     # await message.answer_photo(photo, caption='Последний результат', reply_markup=await del_msg_btn())
     await bot.send_video(message.chat.id, cats)

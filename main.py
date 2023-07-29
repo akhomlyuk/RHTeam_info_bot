@@ -133,7 +133,7 @@ async def rht_rate(message: types.Message):
     w = message.text[6:].split(' ')
     w = [int(item) for item in w]
     result = ic(round(rating(w), 3))
-    await message.answer(f'Текущий рейтинг на данный момент: <b>{result}</b>', parse_mode='HTML')
+    await message.answer(f'Рейтинг на данный момент: <b>{result}</b>', parse_mode='HTML')
 
 
 @dp.message_handler(Text(equals=buttons_cmds, ignore_case=True))

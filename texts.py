@@ -26,6 +26,7 @@ commands = f'''📜 Information: <b>{' : '.join(str(c) for c in info_cmds)}</b>
 📈 Results: <b>{' : '.join(str(c) for c in results_cmds)}</b>
 🔖 Menu: <b>{' : '.join(str(c) for c in menu_cmds)}</b>
 📝 Список дел: <b>{' : '.join(str(c) for c in todo_cmds)}</b>
+📈 Rate: <b>!rate очки_очки 1 место_место_вес_колво тим</b>
 🏁 Flag bot: <b>{' : '.join(str(c) for c in flag_cmds)}</b>
 ⚙️ RHT git: <b>{' : '.join(str(c) for c in git_cmds)}</b>
 📌 URLs: <b>{' : '.join(str(c) for c in buttons_cmds)}</b>

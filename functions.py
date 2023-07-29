@@ -10,6 +10,18 @@ rht_results = "https://ctftime.org/team/186788"
 top_teams_ru_url = 'https://ctftime.org/stats/RU'
 
 
+def rating(results: list):
+    team_points = results[0]
+    best_points = results[1]
+    team_place = results[2]
+    weight = results[3]
+    total_teams = results[4]
+    place_k = 1 / team_place
+    points_k = team_points / best_points
+    result = (points_k + place_k) * weight / 1 / 1 + (team_place / total_teams)
+    return result
+
+
 def rht_best_res() -> list:
     with requests.Session() as s:
         header = {

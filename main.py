@@ -9,7 +9,7 @@ from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFou
 import wikipedia
 from keyboards import del_msg_btn, url_buttons, menu_buttons
 from texts import *
-from functions import rht_best_res, rht_info, top_teams_ru
+from functions import rht_best_res, rht_info, top_teams_ru, rating
 from models import IsAdmin
 
 os.makedirs('logs', exist_ok=True)
@@ -128,6 +128,14 @@ async def rht_art(message: types.Message):
         await message.reply('Страницы на русском не существует :(', reply_markup=await del_msg_btn())
 
 
+@dp.message_handler(Text(startswith='!rate', ignore_case=True))
+async def rht_rate(message: types.Message):
+    w = message.text[6:].split(' ')
+    w = [int(item) for item in w]
+    result = ic(round(rating(w), 3))
+    await message.answer(f'Текущий рейтинг на данный момент: <b>{result}</b>', parse_mode='HTML')
+
+
 @dp.message_handler(Text(equals=buttons_cmds, ignore_case=True))
 async def handle_url_buttons(message: types.Message):
     await url_buttons(message)
@@ -236,15 +244,6 @@ async def bot_send_sticker(message: types.Message):
 @dp.message_handler(Text(equals=pandas_rng_cmds, ignore_case=True))
 async def bot_send_sticker(message: types.Message):
     await message.answer_sticker(random.choice(pandas_rng), reply_markup=await del_msg_btn())
-
-
-# @dp.message_handler(content_types=["sticker"])
-# async def bot_get_sticker_info(message: types.Message):
-#     sticker_id = message.sticker.file_id
-#     file_info = await bot.get_file(sticker_id)
-#     await message.answer(f'<b>Sticker id:</b> <code>{file_info.file_id}</code>', parse_mode='HTML')
-#     await message.answer(f'<b>File size:</b> {file_info.file_size // 1024} Kb', parse_mode='HTML')
-#     await message.answer(f'<b>Sticker unique id:</b> <code>{file_info.file_unique_id}</code>', parse_mode='HTML')
 
 
 @dp.errors_handler()

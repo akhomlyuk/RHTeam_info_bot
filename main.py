@@ -42,12 +42,17 @@ async def delete_message(callback_query: types.CallbackQuery):
 
 @dp.message_handler(Text(equals=del_cmds, ignore_case=True))
 async def delete_messsage(message: types.Message):
-    with suppress(MessageCantBeDeleted, MessageToDeleteNotFound):
-        if IsAdmin(message):
-            await bot.delete_message(message.chat.id, message.reply_to_message.message_id)
-            await message.delete()
-        else:
-            await bot.send_message(message.chat.id, f"Не достаточно прав для удаление сообщения")
+    try:
+        with suppress(MessageCantBeDeleted, MessageToDeleteNotFound):
+            if IsAdmin(message):
+                await bot.delete_message(message.chat.id, message.reply_to_message.message_id)
+                await message.delete()
+            else:
+                await bot.send_message(message.chat.id, f"Не достаточно прав для удаление сообщения")
+    except Exception as e:
+        logging.warning(e)
+        ic(e)
+        await message.answer(str(e))
 
 
 # Вызов кнопок меню, кнопки в keyboards
@@ -64,59 +69,59 @@ async def new_members_handler(message: Message):
 
 @dp.message_handler(Text(equals=results_cmds, ignore_case=True))
 async def rht_results(message: types.Message):
-    await message.reply(top10_results, parse_mode='HTML', reply_markup=await del_msg_btn())
+    await message.answer(top10_results, parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=info_cmds, ignore_case=True))
 async def rht_information(message: types.Message):
-    await message.reply(rht_summary, parse_mode='HTML', reply_markup=await del_msg_btn())
+    await message.answer(rht_summary, parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=flag_cmds, ignore_case=True))
 async def rht_flagbot(message: types.Message):
     flags_bot = '@rhtflagsbot'
-    await message.reply(f'Flags bot here: {flags_bot}', parse_mode='HTML', reply_markup=await del_msg_btn())
+    await message.answer(f'Flags bot here: {flags_bot}', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=blacklist_cmds, ignore_case=True))
 async def rht_get_blacklist(message: types.Message):
     with open('notes/blacklist', encoding='UTF-8', newline='') as content:
         content = content.read()
-    await message.reply(f'''{content}''', parse_mode='HTML', reply_markup=await del_msg_btn())
+    await message.answer(f'''{content}''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=user_id_cmds, ignore_case=True))
 async def rht_get_userid(message: types.Message):
     user_id = message.from_user.id
     prem = message.from_user.is_premium
-    await message.reply(f'ID: <b>{user_id}</b> Premium: <b>{prem}</b>', parse_mode='HTML', reply_markup=await del_msg_btn())
+    await message.answer(f'ID: <b>{user_id}</b> Premium: <b>{prem}</b>', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=next_event_cmds, ignore_case=True))
 async def rht_get_next_event(message: types.Message):
     with open('notes/next', encoding='UTF-8', newline='') as content:
         content = content.read()
-    await message.reply(f'''{content}''', parse_mode='HTML', reply_markup=await del_msg_btn())
+    await message.answer(f'''{content}''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=todo_cmds, ignore_case=True))
 async def rht_todo(message: types.Message):
     with open('notes/todo', encoding='UTF-8', newline='') as content:
         content = content.read()
-    await message.reply(f'''{content}''', parse_mode='HTML', reply_markup=await del_msg_btn())
+    await message.answer(f'''{content}''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=git_cmds, ignore_case=True))
 async def rht_github(message: types.Message):
     rht_git = 'https://github.com/RedHazzarTeam-CODEBY-GAMES/'
-    await message.reply(f'''{rht_git}
+    await message.answer(f'''{rht_git}
 ''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=top_cmds, ignore_case=True))
 async def rht_top_teams_ru(message: types.Message):
     nl = '\n'
-    await message.reply(f'''🇷🇺🇷🇺🇷🇺
+    await message.answer(f'''🇷🇺🇷🇺🇷🇺
 {nl.join(str(team) for team in top_ru)}
 ''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
@@ -128,17 +133,22 @@ async def rht_art(message: types.Message):
         w = wikipedia.page(message.text[6:], auto_suggest=True)
         wiki_page = wikipedia.summary(message.text[6:], sentences=4, auto_suggest=True)
         wiki_url = w.url
-        await message.reply(f'{wiki_page}\n{wiki_url}', disable_web_page_preview=True, reply_markup=await del_msg_btn())
+        await message.answer(f'{wiki_page}\n{wiki_url}', disable_web_page_preview=True, reply_markup=await del_msg_btn())
     except wikipedia.exceptions.PageError:
-        await message.reply('Страницы на русском не существует :(', reply_markup=await del_msg_btn())
+        await message.answer('Страницы на русском не существует :(', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(startswith='!rate', ignore_case=True))
 async def rht_rate(message: types.Message):
-    w = message.text[6:].split(' ')
-    w = [int(item) for item in w]
-    result = ic(round(rating(w), 3))
-    await message.answer(f'Рейтинг на данный момент: <b>{result}</b>', parse_mode='HTML')
+    try:
+        w = message.text[6:].split(' ')
+        w = [int(item) for item in w]
+        result = ic(round(rating(w), 3))
+        await message.answer(f'Рейтинг на данный момент: <b>{result}</b>', parse_mode='HTML')
+    except Exception as e:
+        logging.warning(e)
+        ic(e)
+        await message.answer(str(e))
 
 
 @dp.message_handler(Text(equals=buttons_cmds, ignore_case=True))
@@ -150,17 +160,17 @@ async def handle_url_buttons(message: types.Message):
 async def rht_brief(message: types.Message):
     with open('notes/brief', encoding='UTF-8', newline='') as content:
         brief = content.read()
-    await message.reply(f'''{brief}''', parse_mode='HTML', reply_markup=await del_msg_btn())
+    await message.answer(f'''{brief}''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=ngrok_cmds, ignore_case=True))
 async def rht_ngrok(message: types.Message):
-    await message.reply(ngrok[0], parse_mode='HTML', reply_markup=await del_msg_btn())
+    await message.answer(ngrok[0], parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=commands_cmds, ignore_case=True))
 async def rht_commands(message: types.Message):
-    await message.reply(commands, parse_mode='HTML', reply_markup=await del_msg_btn())
+    await message.answer(commands, parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.callback_query_handler(text="results_data")
@@ -235,7 +245,6 @@ async def blacklist_data(callback: types.CallbackQuery):
 @dp.message_handler(Text(equals=send_photo_cmds, ignore_case=True))
 async def bot_send_picture(message: types.Message):
     photo = InputFile("last.png")
-    # await bot.send_sticker(chat_id=message.chat.id, sticker=r"CAACAgIAAxkBAAEJxCVkurxNbi3yUph4ZkiSoRGWn_BmJAACSCgAAtDiSUtQy_QmRSmjai8E")
     await message.answer_photo(photo, caption='Последний результат', reply_markup=await del_msg_btn())
 
 
@@ -246,7 +255,6 @@ async def bot_send_sticker(message: types.Message):
 
 @dp.message_handler(Text(equals=send_pzd_cmds, ignore_case=True))
 async def bot_send_sticker(message: types.Message):
-    # await message.answer_sticker('CAACAgIAAxkBAAEJ165kxBzP8mMvN2i_bbAuAgiDt8FIcgACuwkAAgi3GQKen_39zWb2dy8E')
     await message.answer_sticker('CAACAgIAAxUAAWTGQH4UwxNH_WDAMyLMm_tDm4haAAKaLwACYqQxSrM6sLKvmqTYLwQ')
 
 

@@ -27,12 +27,17 @@ top_ru = top_teams_ru()
 @dp.callback_query_handler(lambda callback_query: callback_query.data == 'delete_message')
 async def delete_message(callback_query: types.CallbackQuery):
     message = callback_query.message
-    with suppress(MessageCantBeDeleted, MessageToDeleteNotFound):
-        if IsAdmin(message):
-            await bot.delete_message(message.chat.id, message.message_id)
-            await bot.answer_callback_query(callback_query.id)
-        else:
-            await bot.send_message(message.chat.id, "Недостаточно прав для удаления сообщения")
+    try:
+        with suppress(MessageCantBeDeleted, MessageToDeleteNotFound):
+            if IsAdmin(message):
+                await bot.delete_message(message.chat.id, message.message_id)
+                await bot.answer_callback_query(callback_query.id)
+            else:
+                await bot.send_message(message.chat.id, "Недостаточно прав для удаления сообщения")
+    except Exception as e:
+        logging.warning(e)
+        ic(e)
+        await message.answer(str(e))
 
 
 @dp.message_handler(Text(equals=del_cmds, ignore_case=True))
@@ -173,8 +178,11 @@ async def info_data(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="flagbot_data")
 async def flagbot_data(callback: types.CallbackQuery):
     flags_bot = '@rhtflagsbot'
-    await callback.message.answer(f'Flags bot here: {flags_bot}', parse_mode='HTML', reply_markup=await del_msg_btn())
-    await callback.answer()
+    try:
+        await callback.message.answer(f'Flags bot here: {flags_bot}', parse_mode='HTML', reply_markup=await del_msg_btn())
+        await callback.answer()
+    except Exception as e:
+        ic(e)
 
 
 @dp.callback_query_handler(text="todo_data")
@@ -238,7 +246,8 @@ async def bot_send_sticker(message: types.Message):
 
 @dp.message_handler(Text(equals=send_pzd_cmds, ignore_case=True))
 async def bot_send_sticker(message: types.Message):
-    await message.answer_sticker('CAACAgIAAxkBAAEJ165kxBzP8mMvN2i_bbAuAgiDt8FIcgACuwkAAgi3GQKen_39zWb2dy8E')
+    # await message.answer_sticker('CAACAgIAAxkBAAEJ165kxBzP8mMvN2i_bbAuAgiDt8FIcgACuwkAAgi3GQKen_39zWb2dy8E')
+    await message.answer_sticker('CAACAgIAAxUAAWTGQH4UwxNH_WDAMyLMm_tDm4haAAKaLwACYqQxSrM6sLKvmqTYLwQ')
 
 
 @dp.message_handler(Text(equals=pandas_rng_cmds, ignore_case=True))

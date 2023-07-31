@@ -69,6 +69,9 @@
               </li>
         {% endif %}
       </ul>
+            {% if current_user.is_authenticated %}
+                <h6><i class="fa-regular fa-user fa-lg text-success"></i>  {{ current_user.name }}</h6>
+        {% endif %}
        </div>
   </div>
 </nav>

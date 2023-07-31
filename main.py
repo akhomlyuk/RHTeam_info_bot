@@ -63,7 +63,7 @@ async def handle_menu_buttons(message: types.Message):
 
 @dp.message_handler(Text(equals=socks_cmds, ignore_case=True))
 async def proxy_info(message: types.Message):
-    await message.answer(dante_socks, parse_mode='Markdown')
+    await message.answer(dante_socks, parse_mode='Markdown', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(content_types=['new_chat_members'])

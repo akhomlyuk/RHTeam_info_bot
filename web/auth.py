@@ -44,7 +44,7 @@ def login_post():
     if ic(login_user(user)):
         user.last_login_date = datetime.datetime.now()
         db.session.commit()
-    return redirect(url_for('main.profile'))
+    return redirect(url_for('main.index'))
 
 
 @auth.route('/signup')
@@ -56,7 +56,6 @@ def signup():
 def signup_post():
     name = request.form.get('name')
     password = request.form.get('password')
-
     user_name = User.query.filter_by(name=name).first()
     invite = request.form.get('invite')
     if user_name:

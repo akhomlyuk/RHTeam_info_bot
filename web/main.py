@@ -24,17 +24,18 @@ def favicon():
 
 @main.route('/')
 def index():
-
     return render_template('index.html')
 
 
 @main.route('/adm')
+@login_required
 def admin_panel():
     show_user = show_users()
     return render_template('admin.html', users=show_user, user_group=User.user_group)
 
 
 @main.route('/editor')
+@login_required
 def editor_panel():
     try:
         with open(next_event_path, 'r', encoding='UTF-8', newline='') as file:

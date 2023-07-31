@@ -45,6 +45,7 @@ links = f'''🔖 Ссылки:
 '''
 
 dante_socks = f'''<b>SOCKS5</b>
+
 <b>ip</b>: 79.133.183.84
 <b>port</b>: 3137
 <code>dsocks:Z9MYa8HbYrOY4hcdOI8x</code>

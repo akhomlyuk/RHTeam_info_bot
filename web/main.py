@@ -27,7 +27,6 @@ def favicon():
 @main.route('/')
 def index():
     img_list = images_to_index()
-    ic(img_list)
     return render_template('index.html', images=img_list)
 
 

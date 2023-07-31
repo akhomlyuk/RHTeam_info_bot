@@ -44,9 +44,9 @@ links = f'''🔖 Ссылки:
 ☎️ <a href="https://discord.gg/V6Ba8qf2">Discord</a>
 '''
 
-dante_socks = f'''**SOCKS5**
-**ip**: 79.133.183.84
-**port**: 3137
+dante_socks = f'''<b>SOCKS5</b>
+<b>ip</b>: 79.133.183.84
+<b>port</b>: 3137
 `dsocks:Z9MYa8HbYrOY4hcdOI8x`
 
 https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-basic/'''

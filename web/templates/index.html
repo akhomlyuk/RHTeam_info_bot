@@ -48,9 +48,14 @@
 
         {% elif current_user.user_group == 'RHTeam' %}
          <div class="col my-2">
-                <img src="static/last.png" class="img-fluid">
-                {% endif %}
+             <a data-fslightbox="gallery" href="static/last.png"><img src="static/last.png" class="img-thumbnail img-fluid"></a>
+
         </div>
+    <div class="col my-2">
+
+            <a data-fslightbox="gallery" href="static/tfctf.jpg"><img src="static/tfctf.jpg" class="img-thumbnail img-fluid"></a>
+        </div>
+     {% endif %}
 
     </div>
 {% endif %}

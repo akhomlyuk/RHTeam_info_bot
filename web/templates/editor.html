@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if current_user.is_authenticated %}
+
+<div class="row row-cols-1 row-cols-md-2 g-2">
+    {% if current_user.user_group == 'admins' or current_user.user_group == 'Admins' %}
+      <div class="col">
+        <h3>Следующее событие:</h3>
+    <form action="/nextevent" method="post">
+
+        <textarea name="next_event" class="form-control" id="next_event_textarea" rows="10">{{ next_event }}</textarea>
+            <div class="col-sm-3 my-1">
+        <button type="submit" value="Сохранить" class="mt-2 mb-2 btn btn-outline-primary">Сохранить</button>
+            </div>
+    </form>
+      </div>
+
+      <div class="col">
+        <h3>Список дел:</h3>
+          <form action="/todolist" method="post">
+
+            <textarea name="todo_list" class="form-control" id="todo_textarea" rows="10">{{ todo_list }}</textarea>
+
+            <div class="col-sm-3 my-1">
+            <button type="submit" value="Сохранить" class="mt-2 mb-2 btn btn-outline-primary">Сохранить</button>
+            </div>
+
+
+          </form>
+      </div>
+
+    <div class="col">
+        <h3>Blacklist:</h3>
+          <form action="/saveblacklist" method="post">
+
+            <textarea name="blacklist" class="form-control" id="blacklist_area" rows="10">{{ blacklist }}</textarea>
+
+            <div class="col-sm-3 my-1">
+            <button type="submit" value="Сохранить" class="mt-2 mb-2 btn btn-outline-primary">Сохранить</button>
+            </div>
+
+
+          </form>
+      </div>
+
+
+        {% elif current_user.user_group == 'RHTeam' %}
+    <div class="col">
+         {{ next_event }}
+        </div>
+        <div class="col">
+         {{ todo_list }}
+        </div>
+    <div class="col">
+         {{ blacklist }}
+        </div>
+     {% endif %}
+
+    </div>
+{% endif %}
+
+{% if not current_user.is_authenticated %}
+<div class="container">
+    <h3>Авторизация</h3>
+    <div class="mb-3 row">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-danger" role="alert">
+           {{ messages[0] }}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="/login" method="post">
+        <div class="form-group row">
+            <div class="mb-3 row">
+            <div class="col-sm-6">
+              <input name="name" placeholder="Логин" class="form-control" id="inputName">
+            </div>
+          </div>
+            <div class="mb-3 row">
+            <div class="col-sm-6">
+              <input type="password" name="password" placeholder="Пароль" class="form-control" id="inputPassword">
+            </div>
+
+          </div>
+
+             <div class="mb-3 row">
+            <div class="col-sm-6">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+              <label class="form-check-label" for="flexCheckChecked">
+                Запомнить
+              </label>
+            </div>
+          </div>
+        </div>
+            <button class="mt-2 mb-2 btn btn-dark">Войти</button>
+        </form>
+
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

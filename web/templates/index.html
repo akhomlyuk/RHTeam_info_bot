@@ -5,62 +5,21 @@
 {% if current_user.is_authenticated %}
 
 <div class="row row-cols-1 row-cols-md-2 g-2">
-    {% if current_user.user_group == 'admins' or current_user.user_group == 'Admins' %}
-      <div class="col">
-        <h3>Следующее событие:</h3>
-    <form action="/nextevent" method="post">
 
-        <textarea name="next_event" class="form-control" id="next_event_textarea" rows="10">{{ next_event }}</textarea>
-            <div class="col-sm-3 my-1">
-        <button type="submit" value="Сохранить" class="mt-2 mb-2 btn btn-outline-primary">Сохранить</button>
-            </div>
-    </form>
-      </div>
-
-      <div class="col">
-        <h3>Список дел:</h3>
-          <form action="/todolist" method="post">
-
-            <textarea name="todo_list" class="form-control" id="todo_textarea" rows="10">{{ todo_list }}</textarea>
-
-            <div class="col-sm-3 my-1">
-            <button type="submit" value="Сохранить" class="mt-2 mb-2 btn btn-outline-primary">Сохранить</button>
-            </div>
-
-
-          </form>
-      </div>
-
-    <div class="col">
-        <h3>Blacklist:</h3>
-          <form action="/saveblacklist" method="post">
-
-            <textarea name="blacklist" class="form-control" id="blacklist_area" rows="10">{{ blacklist }}</textarea>
-
-            <div class="col-sm-3 my-1">
-            <button type="submit" value="Сохранить" class="mt-2 mb-2 btn btn-outline-primary">Сохранить</button>
-            </div>
-
-
-          </form>
-      </div>
-
-
-        {% elif current_user.user_group == 'RHTeam' %}
          <div class="col my-2">
              <a data-fslightbox="gallery" href="static/last.png"><img src="static/last.png" class="img-thumbnail img-fluid"></a>
-
         </div>
     <div class="col my-2">
-
             <a data-fslightbox="gallery" href="static/tfctf.jpg"><img src="static/tfctf.jpg" class="img-thumbnail img-fluid"></a>
         </div>
-     {% endif %}
+    <div class="col my-2">
+            <a data-fslightbox="gallery" href="static/nahamcon.jpg"><img src="static/nahamcon.jpg" class="img-thumbnail img-fluid"></a>
+        </div>
 
     </div>
-{% endif %}
 
-{% if not current_user.is_authenticated %}
+
+{% elif not current_user.is_authenticated %}
 <div class="container">
     <h3>Авторизация</h3>
     <div class="mb-3 row">

@@ -2,6 +2,7 @@ import os
 import logging
 from flask import Blueprint, render_template, request, send_from_directory, redirect, url_for, flash
 from flask_login import login_required, current_user
+from icecream import ic
 from .db_functions import show_users, set_admins_group, set_users_group, delete_user
 from .auth import admin_required
 from .models import User
@@ -23,19 +24,28 @@ def favicon():
 
 @main.route('/')
 def index():
-    with open(next_event_path, 'r', encoding='UTF-8', newline='') as file:
-        content = file.read()
-    with open(todo_path, 'r', encoding='UTF-8', newline='') as todo:
-        todo = todo.read()
-    with open(blacklist_path, 'r', encoding='UTF-8', newline='') as blacklist:
-        blacklist = blacklist.read()
-    return render_template('index.html', blacklist=blacklist, next_event=content, todo_list=todo)
+
+    return render_template('index.html')
 
 
 @main.route('/adm')
 def admin_panel():
     show_user = show_users()
     return render_template('admin.html', users=show_user, user_group=User.user_group)
+
+
+@main.route('/editor')
+def editor_panel():
+    try:
+        with open(next_event_path, 'r', encoding='UTF-8', newline='') as file:
+            content = file.read()
+        with open(todo_path, 'r', encoding='UTF-8', newline='') as todo:
+            todo = todo.read()
+        with open(blacklist_path, 'r', encoding='UTF-8', newline='') as blacklist:
+            blacklist = blacklist.read()
+        return render_template('editor.html', user_group=User.user_group,  blacklist=blacklist, next_event=content, todo_list=todo)
+    except Exception as e:
+        ic(e)
 
 
 @main.route('/set_admins_group/<int:user_id>')

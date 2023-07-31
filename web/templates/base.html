@@ -31,6 +31,14 @@
         </a>
               </li>
           {% endif %}
+          {% if current_user.is_authenticated %}
+          <li>
+        <a href="{{ url_for('main.editor_panel') }}" class="mx-1 my-1 btn btn-outline-primary" role="button">
+            Редактор
+        </a>
+              </li>
+
+          {% endif %}
           <li>
       <a href="/settings" class="mx-1 my-1 btn btn-outline-primary" role="button">Брифинг</a>
               </li>

@@ -61,6 +61,11 @@ async def handle_menu_buttons(message: types.Message):
     await menu_buttons(message)
 
 
+@dp.message_handler(Text(equals=socks_cmds, ignore_case=True))
+async def proxy_info(message: types.Message):
+    await message.answer(dante_socks, parse_mode='Markdown')
+
+
 @dp.message_handler(content_types=['new_chat_members'])
 async def new_members_handler(message: Message):
     new_member = message.new_chat_members[0]
@@ -231,6 +236,12 @@ async def top_ru_data(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="links_data")
 async def links_data(callback: types.CallbackQuery):
     await callback.message.answer(links, parse_mode='HTML', disable_web_page_preview=True, reply_markup=await del_msg_btn())
+    await callback.answer()
+
+
+@dp.callback_query_handler(text="proxy_data")
+async def proxy_data(callback: types.CallbackQuery):
+    await callback.message.answer(dante_socks, parse_mode='Markdown', reply_markup=await del_msg_btn())
     await callback.answer()
 
 

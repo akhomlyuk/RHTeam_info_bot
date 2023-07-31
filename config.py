@@ -23,6 +23,7 @@ blacklist_cmds = ['!blacklist', '!bl']
 send_gif_cmds = ['!cats']
 send_pzd_cmds = ['!pzd']
 pandas_rng_cmds = ['!rng']
+socks_cmds = ['!proxy', '!socks']
 
 pandas_rng = ['CAACAgIAAxkBAAEJ19tkxDbk5396ftTkASeg_RriLD57LAACGyQAAp-FoUpO07bq-1qtBi8E',
               'CAACAgIAAxkBAAEJ191kxDbnNwHhzHyrUxFLDVT1_O9vtwACVyMAAn2sqEoAAWvYUnsLBOcvBA',

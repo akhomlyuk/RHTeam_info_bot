@@ -26,6 +26,7 @@ commands = f'''📜 Information: <b>{' : '.join(str(c) for c in info_cmds)}</b>
 📈 Results: <b>{' : '.join(str(c) for c in results_cmds)}</b>
 🔖 Menu: <b>{' : '.join(str(c) for c in menu_cmds)}</b>
 📝 Список дел: <b>{' : '.join(str(c) for c in todo_cmds)}</b>
+⚙️ Прокси: <b>{' : '.join(str(c) for c in socks_cmds)}</b>
 📈 Rate: <b>!rate очки_очки 1 место_место_вес_колво тим</b>
 🏁 Flag bot: <b>{' : '.join(str(c) for c in flag_cmds)}</b>
 ⚙️ RHT git: <b>{' : '.join(str(c) for c in git_cmds)}</b>
@@ -42,6 +43,13 @@ links = f'''🔖 Ссылки:
 🏁 <a href="tg://resolve?domain=rhtflagsbot">Flagbot</a>
 ☎️ <a href="https://discord.gg/V6Ba8qf2">Discord</a>
 '''
+
+dante_socks = f'''**SOCKS5**
+**ip**: 79.133.183.84
+**port**: 3137
+`dsocks:Z9MYa8HbYrOY4hcdOI8x`
+
+https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-basic/'''
 
 ngrok = [f'''$ cat ~/.config/ngrok/ngrok.yml
 

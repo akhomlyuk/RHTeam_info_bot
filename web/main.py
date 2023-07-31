@@ -4,6 +4,7 @@ from flask import Blueprint, render_template, request, send_from_directory, redi
 from flask_login import login_required, current_user
 from .db_functions import show_users, set_admins_group, set_users_group, delete_user
 from .auth import admin_required
+from .models import User
 
 main = Blueprint('main', __name__)
 
@@ -32,10 +33,9 @@ def index():
 
 
 @main.route('/adm')
-@admin_required
 def admin_panel():
     show_user = show_users()
-    return render_template('admin.html', users=show_user)
+    return render_template('admin.html', users=show_user, user_group=User.user_group)
 
 
 @main.route('/set_admins_group/<int:user_id>')

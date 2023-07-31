@@ -62,13 +62,17 @@ def signup_post():
     if user_name:
         flash('Данный логин уже используется!')
         return redirect(url_for('auth.signup'))
-    elif invite != 'd1a740a9-2012-4749-8d8d-43386e174714':
-        flash('Неверный инвайт!')
-        return redirect(url_for('auth.signup'))
-
-    new_user = ic(User(name=name, password=generate_password_hash(password, method='scrypt'), user_group='RHTeam', active=True))
-    db.session.add(new_user)
-    db.session.commit()
+    # elif invite != 'd1a740a9-2012-4749-8d8d-43386e174714':
+    #     flash('Неверный инвайт!')
+    #     return redirect(url_for('auth.signup'))
+    try:
+        new_user = ic(User(name=name, password=generate_password_hash(password, method='scrypt'), user_group='RHTeam', active=True))
+        db.session.add(new_user)
+        db.session.commit()
+        ic(new_user)
+        ic(new_user.id)
+    except Exception as e:
+        ic(e)
 
     return redirect(url_for('auth.login'))
 

@@ -10,6 +10,8 @@
         {% endif %}
         {% endwith %}
 
+
+{% if current_user.user_group == 'Admins' %}
 <div class="row row-cols-1 row-cols-md-2 g-2">
 
         {% for user in users %}
@@ -53,5 +55,37 @@
 
 {% endfor %}
 </div>
+
+
+
+{% elif current_user.user_group == 'RHTeam' %}
+<div class="row row-cols-1 row-cols-md-2 g-2">
+
+        {% for user in users %}
+  <div class="col">
+    <div class="card text-bg-light">
+      <div class="card-body">
+
+        <h5 class="card-title">{{ user.name }}
+
+            {% if user.isadmin %}
+             <i title="Администратор"  class="bi bi-person-gear text-primary"></i>
+        {% endif %}
+             {% if not user.isadmin %}
+             <i title="RHTeam"  class="bi bi-person text-success"></i>
+        {% endif %}
+
+        </h5>
+
+          <p class="card-text">ID: <b>{{ user.id }}</b>  Группа: <b>{{ user.user_group }}</b></p>
+          <p class="card-text">Вход: {{ user.last_login_date }}</p>
+      </div>
+    </div>
+  </div>
+
+{% endfor %}
+</div>
+{% endif %}
+
 
 {% endblock %}

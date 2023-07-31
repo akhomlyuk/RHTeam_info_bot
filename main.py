@@ -241,7 +241,7 @@ async def links_data(callback: types.CallbackQuery):
 
 @dp.callback_query_handler(text="proxy_data")
 async def proxy_data(callback: types.CallbackQuery):
-    await callback.message.answer(dante_socks, parse_mode='Markdown', reply_markup=await del_msg_btn())
+    await callback.message.answer(dante_socks, parse_mode='HTML', reply_markup=await del_msg_btn())
     await callback.answer()
 
 

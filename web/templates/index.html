@@ -5,17 +5,12 @@
 {% if current_user.is_authenticated %}
 
 <div class="row row-cols-1 row-cols-md-2 g-2">
-
+        {% for image in images %}
          <div class="col my-2">
-             <a data-fslightbox="gallery" href="static/last.png"><img src="static/last.png" class="img-thumbnail img-fluid"></a>
-        </div>
-    <div class="col my-2">
-            <a data-fslightbox="gallery" href="static/tfctf.jpg"><img src="static/tfctf.jpg" class="img-thumbnail img-fluid"></a>
-        </div>
-    <div class="col my-2">
-            <a data-fslightbox="gallery" href="static/nahamcon.jpg"><img src="static/nahamcon.jpg" class="img-thumbnail img-fluid"></a>
+             <a data-fslightbox="gallery" href="static/{{ image }}"><img src="static/{{ image }}" class="img-thumbnail img-fluid"></a>
         </div>
 
+    {% endfor %}
     </div>
 
 

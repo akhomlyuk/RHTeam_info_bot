@@ -6,6 +6,7 @@ from icecream import ic
 from .db_functions import show_users, set_admins_group, set_users_group, delete_user
 from .auth import admin_required
 from .models import User
+from .helpers import images_to_index
 
 main = Blueprint('main', __name__)
 
@@ -14,6 +15,7 @@ blacklist_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '
 next_event_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'notes', 'next'))
 todo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'notes', 'todo'))
 log_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'logs', 'web.log'))
+
 logging.basicConfig(level=logging.INFO, filename=log_path, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
@@ -24,7 +26,9 @@ def favicon():
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    img_list = images_to_index()
+    ic(img_list)
+    return render_template('index.html', images=img_list)
 
 
 @main.route('/adm')

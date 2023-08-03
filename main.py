@@ -279,7 +279,7 @@ async def hash_identify(message: types.Message):
     try:
         msg = message.text.split()
         if len(msg) == 1:
-            await message.answer(f'Пример:\n<code>!hash a6105c0a611b41b08f1209506350279e</code>')
+            await message.answer(f'Пример:\n<code>!hash a6105c0a611b41b08f1209506350279e</code>', parse_mode='html')
         else:
             hash_string = message.text[6:]
             text = f''''''

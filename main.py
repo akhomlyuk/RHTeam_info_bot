@@ -9,7 +9,7 @@ from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFou
 import wikipedia
 from keyboards import del_msg_btn, url_buttons, menu_buttons
 from texts import *
-from functions import rht_best_res, rht_info, top_teams_ru, rating
+from functions import rht_best_res, rht_info, top_teams_ru, rating, hash_analyze
 from models import IsAdmin
 
 os.makedirs('logs', exist_ok=True)
@@ -272,6 +272,28 @@ async def bot_send_sticker(message: types.Message):
 @dp.message_handler(Text(equals=pandas_rng_cmds, ignore_case=True))
 async def bot_send_sticker(message: types.Message):
     await message.answer_sticker(random.choice(pandas_rng), reply_markup=await del_msg_btn())
+
+
+@dp.message_handler(Text(startswith='!hash'))
+async def hash_identify(message: types.Message):
+    try:
+        msg = message.text.split()
+        if len(msg) == 1:
+            await message.answer(f'Пример:\n<code>!hash a6105c0a611b41b08f1209506350279e</code>')
+        else:
+            hash_string = message.text[6:]
+            text = f''''''
+            for item in hash_analyze(hash_string):
+                text += "<b>Hash type: </b>" + "<code>" + item['name'] + "</code>" + '\n'
+                text += "<b>John format: </b>" + "<code>" + str(item['john']) + "</code>" + '\n'
+                text += "<b>Hashcat format: </b>" + "<code>" + str(item['hashcat']) + "</code>" + '\n'
+                text += "<b>Info: </b>" + "<code>" + str(item['description']) + "</code>" + '\n'
+                text += "-" * 10 + "\n"
+            await message.answer("Основные варианты:\n" + text, parse_mode='html')
+    except Exception as e:
+        logging.warning(e)
+        ic(e)
+        ic()
 
 
 @dp.errors_handler()

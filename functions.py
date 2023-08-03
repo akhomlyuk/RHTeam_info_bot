@@ -1,6 +1,7 @@
 import requests
 import json
 from bs4 import BeautifulSoup
+from name_that_hash import runner
 from icecream import ic
 
 result_api_url = 'https://ctftime.org/api/v1/results/'
@@ -132,3 +133,15 @@ def top_teams_ru() -> list:
             for j in i:
                 results_for_menu.append(f'<b>{i[j].get("Place")}</b> {j} Points: <b>{i[j].get("CTF points")}</b>')
         return results_for_menu
+
+
+def hash_analyze(hash_string: str):
+    try:
+        text = runner.api_return_hashes_as_dict([hash_string], {"popular_only": True})
+        ic(len(text[hash_string]))
+        ic(text[hash_string])
+        return text[hash_string]
+    except Exception as e:
+        ic(e)
+        ic()
+

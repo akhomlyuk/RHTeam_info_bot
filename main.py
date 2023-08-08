@@ -274,6 +274,12 @@ async def bot_send_sticker(message: types.Message):
     await message.answer_sticker(random.choice(pandas_rng), reply_markup=await del_msg_btn())
 
 
+@dp.message_handler(Text(equals='!uptime', ignore_case=True))
+async def uptime_info(message: Message):
+    t = os.popen('uptime -p').read()[:-1]
+    await message.answer(f'{t}')
+
+
 @dp.message_handler(Text(startswith='!hash'))
 async def hash_identify(message: types.Message):
     try:

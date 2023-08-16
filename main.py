@@ -273,6 +273,7 @@ async def bot_send_sticker(message: types.Message):
 async def bot_send_sticker(message: types.Message):
     await message.answer_sticker('CAACAgIAAxUAAWTaEgABF6qmr1JJFDjaypM-SuWZcgACIzUAApo6yEqXMkvOzDYhxTAE')
 
+
 @dp.message_handler(Text(equals=pandas_rng_cmds, ignore_case=True))
 async def bot_send_sticker(message: types.Message):
     await message.answer_sticker(random.choice(pandas_rng), reply_markup=await del_msg_btn())

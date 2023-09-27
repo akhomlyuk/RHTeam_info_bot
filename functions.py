@@ -129,7 +129,7 @@ def top_teams_ru() -> list:
             results.append(
                 {team_name: {'Place': int(place), 'CTF points': float(points)}})
         results_for_menu = []
-        for i in results[:8]:
+        for i in results[:14]:
             for j in i:
                 results_for_menu.append(f'<b>{i[j].get("Place")}</b> {j} Points: <b>{i[j].get("CTF points")}</b>')
         return results_for_menu

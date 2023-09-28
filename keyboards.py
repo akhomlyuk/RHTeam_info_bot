@@ -14,7 +14,7 @@ async def url_buttons(message: types.Message):
     url_button = InlineKeyboardButton(text='⚙️ RHT github', url='https://github.com/RedHazzarTeam-CODEBY-GAMES/')
     url_button2 = InlineKeyboardButton(text='🃏  RHT ctftime', url='https://ctftime.org/team/186788')
     url_button3 = InlineKeyboardButton(text='🏁  RHT flagbot', url='tg://resolve?domain=rhtflagsbot')
-    url_button4 = InlineKeyboardButton(text='☎️  RHT Discord', url='https://discord.gg/V6Ba8qf2')
+    url_button4 = InlineKeyboardButton(text='☎️  RHT Discord', url='https://discord.gg/52amEYzC')
     kb_buttons.add(url_button, url_button2, url_button3, url_button4)
     await message.answer('🔖 Полезные ссылки:\n', reply_markup=kb_buttons)
 

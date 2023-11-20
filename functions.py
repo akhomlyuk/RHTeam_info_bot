@@ -50,7 +50,7 @@ def rht_best_res() -> list:
             for j in i:
                 total_rating += i[j].get('Rating')
 
-        for i in sorted_data[:9]:
+        for i in sorted_data[:8]:
             for j in i:
                 if i[j].get("Place") == 3:
                     results_for_menu.append(f'🥉 {j} Rate: <b>{i[j].get("Rating")}</b>')
@@ -59,8 +59,8 @@ def rht_best_res() -> list:
                 elif i[j].get("Place") == 1:
                     results_for_menu.append(f'🥇 {j} Rate: <b>{i[j].get("Rating")}</b>')
                 else:
-                    results_for_menu.append(f'{i[j].get("Place")} {j} Rate: <b>{i[j].get("Rating")}</b>')
-        return [sorted_data[:9], total_rating, results_for_menu]
+                    results_for_menu.append(f'▪️ {i[j].get("Place")} {j} Rate: <b>{i[j].get("Rating")}</b>')
+        return [sorted_data[:8], total_rating, results_for_menu]
 
 
 def rht_info() -> dict:

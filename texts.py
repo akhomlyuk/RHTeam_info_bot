@@ -8,12 +8,11 @@ top_ru = top_teams_ru()
 top10_rht = '\n'.join([i for i in rht_best[2]])
 
 top10_results = f'''<b>Лучшие результаты по рейтингу</b>\n{top10_rht}\n
-<b>Organized CTF events</b>\n▪️ Cybercoliseum: <b>{22.83 * 2}</b>\n▪️ Cybercoliseum II: <b>{20.60 * 2}</b>\n
-🎯 Rating points: <b>{rht_info["rating"]["2023"]["rating_points"]}</b>'''
+🎯 Rating points: <b>{rht_info["rating"]["202"]["rating_points"]}</b>'''
 
-rht_summary = f'''🌍 Worldwide position: <b>{rht_info["rating"]["2023"]["rating_place"]}</b>
-🇷🇺 RU position: <b>{rht_info["rating"]["2023"]["country_place"]}</b>
-🎯 Rating points: <b>{rht_info["rating"]["2023"]["rating_points"]}</b>
+rht_summary = f'''🌍 Worldwide position: <b>{rht_info["rating"]["202"]["rating_place"]}</b>
+🇷🇺 RU position: <b>{rht_info["rating"]["202"]["country_place"]}</b>
+🎯 Rating points: <b>{rht_info["rating"]["202"]["rating_points"]}</b>
 🚩 Team ID: <b>{rht_info["id"]}</b>
 https://ctftime.org/team/186788'''
 

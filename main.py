@@ -18,9 +18,9 @@ os.makedirs('notes', exist_ok=True)
 bot = Bot(token=bot_token)
 dp = Dispatcher(bot)
 
-rht_info = rht_info()
-rht_best = rht_best_res()
-top_ru = top_teams_ru()
+# rht_info = rht_info()
+# rht_best = rht_best_res()
+# top_ru = top_teams_ru()
 
 
 # Вызов inline кнопки удалить под сообщениями бота, кнопки в keyboards
@@ -72,14 +72,14 @@ async def new_members_handler(message: Message):
     await bot.send_message(message.chat.id, f"Добро пожаловать в RHTeam 🖖, {new_member.mention}!")
 
 
-@dp.message_handler(Text(equals=results_cmds, ignore_case=True))
-async def rht_results(message: types.Message):
-    await message.answer(top10_results, parse_mode='HTML', reply_markup=await del_msg_btn())
+# @dp.message_handler(Text(equals=results_cmds, ignore_case=True))
+# async def rht_results(message: types.Message):
+#     await message.answer(top10_results, parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
-@dp.message_handler(Text(equals=info_cmds, ignore_case=True))
-async def rht_information(message: types.Message):
-    await message.answer(rht_summary, parse_mode='HTML', reply_markup=await del_msg_btn())
+# @dp.message_handler(Text(equals=info_cmds, ignore_case=True))
+# async def rht_information(message: types.Message):
+#     await message.answer(rht_summary, parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=flag_cmds, ignore_case=True))
@@ -123,12 +123,12 @@ async def rht_github(message: types.Message):
 ''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
-@dp.message_handler(Text(equals=top_cmds, ignore_case=True))
-async def rht_top_teams_ru(message: types.Message):
-    nl = '\n'
-    await message.answer(f'''🇷🇺🇷🇺🇷🇺
-{nl.join(str(team) for team in top_ru)}
-''', parse_mode='HTML', reply_markup=await del_msg_btn())
+# @dp.message_handler(Text(equals=top_cmds, ignore_case=True))
+# async def rht_top_teams_ru(message: types.Message):
+#     nl = '\n'
+#     await message.answer(f'''🇷🇺🇷🇺🇷🇺
+# {nl.join(str(team) for team in top_ru)}
+# ''', parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(startswith=wiki_cmds, ignore_case=True))
@@ -178,16 +178,16 @@ async def rht_commands(message: types.Message):
     await message.answer(commands, parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
-@dp.callback_query_handler(text="results_data")
-async def results_data(callback: types.CallbackQuery):
-    await callback.message.answer(top10_results, parse_mode='HTML', reply_markup=await del_msg_btn())
-    await callback.answer()
+# @dp.callback_query_handler(text="results_data")
+# async def results_data(callback: types.CallbackQuery):
+#     await callback.message.answer(top10_results, parse_mode='HTML', reply_markup=await del_msg_btn())
+#     await callback.answer()
 
 
-@dp.callback_query_handler(text="info_data")
-async def info_data(callback: types.CallbackQuery):
-    await callback.message.answer(rht_summary, parse_mode='HTML', reply_markup=await del_msg_btn())
-    await callback.answer()
+# @dp.callback_query_handler(text="info_data")
+# async def info_data(callback: types.CallbackQuery):
+#     await callback.message.answer(rht_summary, parse_mode='HTML', reply_markup=await del_msg_btn())
+#     await callback.answer()
 
 
 @dp.callback_query_handler(text="flagbot_data")
@@ -224,13 +224,13 @@ async def next_event_data(callback: types.CallbackQuery):
     await callback.answer()
 
 
-@dp.callback_query_handler(text="top_ru_data")
-async def top_ru_data(callback: types.CallbackQuery):
-    nl = '\n'
-    await callback.message.answer(f'''🇷🇺🇷🇺🇷🇺
-{nl.join(str(team) for team in top_ru)}
-''', parse_mode='HTML', reply_markup=await del_msg_btn())
-    await callback.answer()
+# @dp.callback_query_handler(text="top_ru_data")
+# async def top_ru_data(callback: types.CallbackQuery):
+#     nl = '\n'
+#     await callback.message.answer(f'''🇷🇺🇷🇺🇷🇺
+# {nl.join(str(team) for team in top_ru)}
+# ''', parse_mode='HTML', reply_markup=await del_msg_btn())
+#     await callback.answer()
 
 
 @dp.callback_query_handler(text="links_data")

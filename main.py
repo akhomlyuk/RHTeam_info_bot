@@ -9,7 +9,7 @@ from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFou
 import wikipedia
 from keyboards import del_msg_btn, url_buttons, menu_buttons
 from texts import *
-from functions import rht_best_res, rht_info, top_teams_ru, rating, hash_analyze
+from functions import rht_best_res, rht_info, rating, hash_analyze
 from models import IsAdmin
 
 os.makedirs('logs', exist_ok=True)
@@ -18,8 +18,8 @@ os.makedirs('notes', exist_ok=True)
 bot = Bot(token=bot_token)
 dp = Dispatcher(bot)
 
-# rht_info = rht_info()
-# rht_best = rht_best_res()
+rht_info = rht_info()
+rht_best = rht_best_res()
 # top_ru = top_teams_ru()
 
 
@@ -36,7 +36,6 @@ async def delete_message(callback_query: types.CallbackQuery):
                 await bot.send_message(message.chat.id, "Недостаточно прав для удаления сообщения")
     except Exception as e:
         logging.warning(e)
-        ic(e)
         await message.answer(str(e))
 
 
@@ -51,7 +50,6 @@ async def delete_messsage(message: types.Message):
                 await bot.send_message(message.chat.id, f"Не достаточно прав для удаление сообщения")
     except Exception as e:
         logging.warning(e)
-        ic(e)
         await message.answer(str(e))
 
 
@@ -77,9 +75,9 @@ async def new_members_handler(message: Message):
 #     await message.answer(top10_results, parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
-# @dp.message_handler(Text(equals=info_cmds, ignore_case=True))
-# async def rht_information(message: types.Message):
-#     await message.answer(rht_summary, parse_mode='HTML', reply_markup=await del_msg_btn())
+@dp.message_handler(Text(equals=info_cmds, ignore_case=True))
+async def rht_information(message: types.Message):
+    await message.answer(rht_summary, parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=flag_cmds, ignore_case=True))
@@ -148,11 +146,11 @@ async def rht_rate(message: types.Message):
     try:
         w = message.text[6:].split(' ')
         w = [int(item) for item in w]
-        result = ic(round(rating(w), 3))
+        result = round(rating(w), 3)
         await message.answer(f'Рейтинг на данный момент: <b>{result}</b>', parse_mode='HTML')
     except Exception as e:
         logging.warning(e)
-        ic(e)
+        logging(e)
         await message.answer(str(e))
 
 
@@ -178,16 +176,16 @@ async def rht_commands(message: types.Message):
     await message.answer(commands, parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
-# @dp.callback_query_handler(text="results_data")
-# async def results_data(callback: types.CallbackQuery):
-#     await callback.message.answer(top10_results, parse_mode='HTML', reply_markup=await del_msg_btn())
-#     await callback.answer()
+@dp.callback_query_handler(text="results_data")
+async def results_data(callback: types.CallbackQuery):
+    await callback.message.answer(top10_results, parse_mode='HTML', reply_markup=await del_msg_btn())
+    await callback.answer()
 
 
-# @dp.callback_query_handler(text="info_data")
-# async def info_data(callback: types.CallbackQuery):
-#     await callback.message.answer(rht_summary, parse_mode='HTML', reply_markup=await del_msg_btn())
-#     await callback.answer()
+@dp.callback_query_handler(text="info_data")
+async def info_data(callback: types.CallbackQuery):
+    await callback.message.answer(rht_summary, parse_mode='HTML', reply_markup=await del_msg_btn())
+    await callback.answer()
 
 
 @dp.callback_query_handler(text="flagbot_data")
@@ -197,7 +195,7 @@ async def flagbot_data(callback: types.CallbackQuery):
         await callback.message.answer(f'Flags bot here: {flags_bot}', parse_mode='HTML', reply_markup=await del_msg_btn())
         await callback.answer()
     except Exception as e:
-        ic(e)
+        logging(e)
 
 
 @dp.callback_query_handler(text="todo_data")
@@ -303,8 +301,7 @@ async def hash_identify(message: types.Message):
             await message.answer("Основные варианты:\n" + text, parse_mode='html')
     except Exception as e:
         logging.warning(e)
-        ic(e)
-        ic()
+        logging(e)
 
 
 @dp.errors_handler()

@@ -1,20 +1,20 @@
-# from functions import rht_best_res, rht_info, top_teams_ru
+from functions import rht_best_res, rht_info
 from config import *
 
-# rht_info = rht_info()
-# rht_best = rht_best_res()
+rht_info = rht_info()
+rht_best = rht_best_res()
 # top_ru = top_teams_ru()
-#
-# top10_rht = '\n'.join([i for i in rht_best[2]])
-#
-# top10_results = f'''<b>Лучшие результаты по рейтингу</b>\n{top10_rht}\n
-# 🎯 Rating points: <b>{rht_info["rating"]["2024"]["rating_points"]}</b>'''
-#
-# rht_summary = f'''🌍 Worldwide position: <b>{rht_info["rating"]["2024"]["rating_place"]}</b>
-# 🇷🇺 RU position: <b>{rht_info["rating"]["2024"]["country_place"]}</b>
-# 🎯 Rating points: <b>{rht_info["rating"]["2024"]["rating_points"]}</b>
-# 🚩 Team ID: <b>{rht_info["id"]}</b>
-# https://ctftime.org/team/186788'''
+
+top10_rht = '\n'.join([i for i in rht_best[1]])
+
+top10_results = f'''<b>Лучшие результаты по рейтингу</b>\n{top10_rht}\n
+🎯 Rating points: <b>{rht_info["rating"]["2024"]["rating_points"]}</b>'''
+
+rht_summary = f'''🌍 Worldwide position: <b>{rht_info["rating"]["2024"]["rating_place"]}</b>
+🇷🇺 RU position: <b>{rht_info["rating"]["2024"]["country_place"]}</b>
+🎯 Rating points: <b>{rht_info["rating"]["2024"]["rating_points"]}</b>
+🚩 Team ID: <b>{rht_info["id"]}</b>
+https://ctftime.org/team/186788'''
 
 commands = f'''📜 Information: <b>{' : '.join(str(c) for c in info_cmds)}</b>
 📈 Results: <b>{' : '.join(str(c) for c in results_cmds)}</b>

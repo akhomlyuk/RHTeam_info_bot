@@ -1,7 +1,7 @@
 import os
-from icecream import ic
 
 bot_token = os.getenv('rht_info_bot_token')
+
 results_cmds = ['!results', '!stats', '!best']
 info_cmds = ['!info', '!information', '!инфо']
 flag_cmds = ['!flags', '!flagbot']

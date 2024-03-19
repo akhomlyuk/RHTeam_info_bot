@@ -70,9 +70,9 @@ async def new_members_handler(message: Message):
     await bot.send_message(message.chat.id, f"Добро пожаловать в RHTeam 🖖, {new_member.mention}!")
 
 
-# @dp.message_handler(Text(equals=results_cmds, ignore_case=True))
-# async def rht_results(message: types.Message):
-#     await message.answer(top10_results, parse_mode='HTML', reply_markup=await del_msg_btn())
+@dp.message_handler(Text(equals=results_cmds, ignore_case=True))
+async def rht_results(message: types.Message):
+    await message.answer(top10_results, parse_mode='HTML', reply_markup=await del_msg_btn())
 
 
 @dp.message_handler(Text(equals=info_cmds, ignore_case=True))
